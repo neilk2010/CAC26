@@ -22,8 +22,8 @@ export interface DeadlineRule {
   sourceUrl: string;
   lastVerified: string;
   /** Annual recurring window; day precision ONLY where the source states it. */
-  opens?: { month: number; day: number; label: string };
-  closes?: { month: number; day: number; label: string };
+  opens?: { month: number; day: number; label: string; };
+  closes?: { month: number; day: number; label: string; };
   /** When the real date varies (by state/affiliate), say so — no .ics offered. */
   varies?: string;
 }
@@ -37,8 +37,8 @@ export const DEADLINE_RULES: DeadlineRule[] = [
       "New Jersey's health insurance marketplace enrolls anyone during Open Enrollment. Outside the window you need a qualifying life event.",
     sourceUrl: "https://www.nj.gov/getcoverednj/",
     lastVerified: "2026-07-08",
-    opens: { month: 11, day: 1, label: "Open Enrollment starts" },
-    closes: { month: 1, day: 31, label: "Open Enrollment ends" },
+    opens: { month: 11, day: 1, label: "Open Enrollment Starts" },
+    closes: { month: 1, day: 31, label: "Open Enrollment Ends" },
   },
   {
     id: "aca-oep-ca",
@@ -48,8 +48,8 @@ export const DEADLINE_RULES: DeadlineRule[] = [
       "California's marketplace enrolls anyone during Open Enrollment; apply by December to be covered on January 1.",
     sourceUrl: "https://www.coveredca.com/support/before-you-buy/enrollment-dates-and-deadlines/",
     lastVerified: "2026-07-08",
-    opens: { month: 11, day: 1, label: "Open Enrollment starts" },
-    closes: { month: 1, day: 31, label: "Open Enrollment ends" },
+    opens: { month: 11, day: 1, label: "Open Enrollment Starts" },
+    closes: { month: 1, day: 31, label: "Open Enrollment Ends" },
   },
   {
     id: "aca-oep-ny",
@@ -59,8 +59,8 @@ export const DEADLINE_RULES: DeadlineRule[] = [
       "New York's marketplace enrolls anyone November 1 through January 31; enroll by December 15 for coverage that starts January 1. (Essential Plan and Medicaid enroll year-round.)",
     sourceUrl: "https://info.nystateofhealth.ny.gov/news/press-release-new-york-state-department-health-announces-open-enrollment-2026-coverage",
     lastVerified: "2026-07-19",
-    opens: { month: 11, day: 1, label: "Open Enrollment starts" },
-    closes: { month: 1, day: 31, label: "Open Enrollment ends" },
+    opens: { month: 11, day: 1, label: "Open Enrollment Starts" },
+    closes: { month: 1, day: 31, label: "Open Enrollment Ends" },
   },
   {
     id: "aca-oep-pa",
@@ -70,8 +70,8 @@ export const DEADLINE_RULES: DeadlineRule[] = [
       "Pennsylvania's marketplace enrolls anyone November 1 through January 31; enroll by December 15 for coverage that starts January 1.",
     sourceUrl: "https://agency.pennie.com/pennies-2026-open-enrollment-period-is-underway-protect-your-health-by-enrolling-in-a-high-quality-health-plan-through-pennie/",
     lastVerified: "2026-07-19",
-    opens: { month: 11, day: 1, label: "Open Enrollment starts" },
-    closes: { month: 1, day: 31, label: "Open Enrollment ends" },
+    opens: { month: 11, day: 1, label: "Open Enrollment Starts" },
+    closes: { month: 1, day: 31, label: "Open Enrollment Ends" },
   },
   {
     id: "aca-oep-il",
@@ -81,8 +81,8 @@ export const DEADLINE_RULES: DeadlineRule[] = [
       "Illinois' own marketplace (new for 2026) enrolls anyone November 1 through January 15.",
     sourceUrl: "https://getcovered.illinois.gov/get-started/about-the-marketplace.html",
     lastVerified: "2026-07-19",
-    opens: { month: 11, day: 1, label: "Open Enrollment starts" },
-    closes: { month: 1, day: 15, label: "Open Enrollment ends" },
+    opens: { month: 11, day: 1, label: "Open Enrollment Starts" },
+    closes: { month: 1, day: 15, label: "Open Enrollment Ends" },
   },
   {
     id: "aca-oep-federal",
@@ -93,8 +93,8 @@ export const DEADLINE_RULES: DeadlineRule[] = [
       "The federal marketplace's yearly window to enroll in or change a health plan. Enroll by December 15 for coverage that starts January 1.",
     sourceUrl: "https://www.healthcare.gov/quick-guide/dates-and-deadlines/",
     lastVerified: "2026-07-08",
-    opens: { month: 11, day: 1, label: "Open Enrollment starts" },
-    closes: { month: 1, day: 15, label: "Open Enrollment ends" },
+    opens: { month: 11, day: 1, label: "Open Enrollment Starts" },
+    closes: { month: 1, day: 15, label: "Open Enrollment Ends" },
   },
   {
     id: "fafsa",
