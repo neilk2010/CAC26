@@ -441,9 +441,11 @@ a:hover .offer-arrow {
    Everything is transform/opacity only. Reduced motion: a static ring.
 --------------------------------------------------------------------------- */
 .orbit {
-  /* 2 × (outer radius 264 + chip + label) with breathing room. */
-  width: min(92vw, 640px);
-  height: 690px;
+  /* 2 × (outer radius 288 + half the widest label, "PHONE & INTERNET" ≈ 58px)
+     with breathing room, and enough height that the 12 o'clock chip clears
+     the section heading. */
+  width: min(94vw, 700px);
+  height: 720px;
 }
 .orbit-path {
   position: absolute;
@@ -482,6 +484,19 @@ a:hover .offer-arrow {
   width: 0;
   height: 0;
 }
+/* Every rotation in the chain must pivot about the arm's endpoint. The first
+   three collapse to a point so they already do, but .orbit-upright is only
+   zero-WIDTH — it inherits the node's height, so its default 50% 50% origin
+   sits half a node below the endpoint. Pivoting there turns the static
+   counter-rotation into a rotation *plus* a translation, pushing each node
+   off its ring by height × |sin(angle/2)| — an error that varies per node,
+   so chips scatter inside and outside the line instead of tracking it. */
+.orbit-ring,
+.orbit-arm,
+.orbit-counter,
+.orbit-upright {
+  transform-origin: 0 0;
+}
 .orbit-arm {
   transform: rotate(var(--angle)) translateX(var(--radius));
 }
@@ -493,6 +508,7 @@ a:hover .offer-arrow {
      zero-width link is invisible to hit-testing/a11y even when its children
      paint fine. Labels wider than this center-overflow symmetrically. */
   width: 96px;
+  position: relative;
   transform: translate(-50%, -50%);
   transition: transform var(--dur-base) var(--ease-spring), opacity var(--dur-base) ease;
 }
@@ -519,6 +535,15 @@ a:hover .offer-arrow {
   box-shadow: 0 0 26px -4px color-mix(in srgb, var(--node-color) 45%, transparent);
 }
 .orbit-label {
+  /* Out of flow on purpose: in-flow, the label's height counts toward the
+     node box that translate(-50%,-50%) centers on the path, which lifts the
+     chip off the line by half the label — so chips drifted outside the ring
+     at the top and inside it at the bottom. Absolute keeps the node box
+     exactly the chip, so the chip's center rides the line at every angle. */
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
   color: var(--muted);
   transition: color var(--dur-quick) ease;
 }

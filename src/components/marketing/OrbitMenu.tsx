@@ -103,7 +103,7 @@ function Ring({
                     e.preventDefault();
                     onFly(n);
                   }}
-                  className={`orbit-node group flex flex-col items-center gap-1.5 ${
+                  className={`orbit-node group flex flex-col items-center ${
                     flyingTo === n.id ? "orbit-fly-target" : ""
                   } ${flyingTo && flyingTo !== n.id ? "orbit-fly-rest" : ""}`}
                   style={{ "--node-color": n.color } as CSSProperties}
@@ -151,8 +151,10 @@ export function OrbitMenu() {
       className={`orbit relative mx-auto ${flyingTo ? "orbit-flying" : ""}`}
     >
       {/* Faint orbital paths — static, purely decorative. */}
-      <div aria-hidden className="orbit-path" style={{ "--path-r": "148px" } as CSSProperties} />
-      <div aria-hidden className="orbit-path" style={{ "--path-r": "264px" } as CSSProperties} />
+      {/* Each --path-r MUST equal its Ring's radius below, or the chips stop
+          tracking the line they're drawn on. */}
+      <div aria-hidden className="orbit-path" style={{ "--path-r": "136px" } as CSSProperties} />
+      <div aria-hidden className="orbit-path" style={{ "--path-r": "288px" } as CSSProperties} />
 
       {/* The core: OpenDoor itself — a real door to the general intake. */}
       <Link
@@ -173,7 +175,7 @@ export function OrbitMenu() {
 
       <Ring
         nodes={INNER}
-        radius={148}
+        radius={136}
         size={62}
         ringClass="orbit-ring-inner"
         startDeg={-90}
@@ -182,7 +184,7 @@ export function OrbitMenu() {
       />
       <Ring
         nodes={OUTER}
-        radius={264}
+        radius={288}
         size={54}
         ringClass="orbit-ring-outer"
         startDeg={-67.5}

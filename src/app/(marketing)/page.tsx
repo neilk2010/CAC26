@@ -32,7 +32,12 @@ export default function Home() {
         </div>
       </section>
 
-      <CategoryGrid />
+      {/* Desktop already sees every category on the orbit's outer ring —
+          this grid would just repeat it. Mobile swaps the orbit for the
+          persona tiles above, so it still needs a categories entry point. */}
+      <div className="md:hidden">
+        <CategoryGrid />
+      </div>
       <AccessibilityGrid />
       <HowItWorksSteps />
 
