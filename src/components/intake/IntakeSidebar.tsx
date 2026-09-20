@@ -1,4 +1,5 @@
 import { STEP_NOTES } from "@/data/questions";
+import { StillPossibleMore } from "@/components/intake/StillPossibleMore";
 import type { EligibilityResult } from "@/lib/types";
 
 interface IntakeSidebarProps {
@@ -51,7 +52,14 @@ export function IntakeSidebar({ step, stateName, categories, programCount, resul
               </span>
             ))}
             {stillPossible.length > 8 && (
-              <span className="text-xs text-muted px-1 py-1">+{stillPossible.length - 8} more</span>
+              <StillPossibleMore
+                hiddenCount={stillPossible.length - 8}
+                items={stillPossible.map((r) => ({
+                  id: r.program.id,
+                  name: r.program.shortName,
+                  confidence: r.confidence,
+                }))}
+              />
             )}
           </div>
         </div>
