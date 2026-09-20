@@ -74,16 +74,17 @@ describe("matchedDeadlines", () => {
   });
 
   it("a federal-tier household falls back to the federal windows", () => {
-    // GA is still federal-tier (TX was promoted to a deep pack in V5).
-    const ga = STATES.find((s) => s.code === "GA")!;
+    // AZ is still federal-tier (GA was promoted to a deep pack alongside
+    // OH/NC/MI, so it no longer falls back to the federal windows).
+    const az = STATES.find((s) => s.code === "AZ")!;
     const household: Household = {
-      state: "GA",
+      state: "AZ",
       householdSize: 3,
       monthlyIncomeMin: 1500,
       monthlyIncomeMax: 2000,
       flags: {},
     };
-    const { personal } = matchedDeadlines(evaluateAll(ga.programs, household), household, now);
+    const { personal } = matchedDeadlines(evaluateAll(az.programs, household), household, now);
     const ids = personal.map((m) => m.rule.id);
     expect(ids).toContain("aca-oep-federal");
     expect(ids).toContain("liheap-general");

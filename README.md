@@ -44,10 +44,11 @@ or population is a data edit, never a code change.
 - `src/app/(marketing)/{page,about,how-it-works,for/[population]}` — the marketing
   pages, including data-driven per-population landings.
 
-Currently ships with seven full-coverage states — New Jersey (the default),
-California, Texas, Florida, New York, Pennsylvania, and Illinois — each with a
-hand-verified state pack on top of the federal baseline, plus an honest
-federal-tier experience for the other 44 jurisdictions.
+Currently ships with eleven full-coverage states — New Jersey (the default),
+California, Texas, Florida, New York, Pennsylvania, Illinois, Ohio, Georgia,
+North Carolina, and Michigan — each with a hand-verified state pack on top of
+the federal baseline, plus an honest federal-tier experience for the other 40
+jurisdictions.
 
 ## Getting started
 

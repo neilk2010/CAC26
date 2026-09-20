@@ -14,11 +14,20 @@ import { PA_META } from "@/data/states/PA/meta";
 import { PA_PROGRAMS } from "@/data/states/PA/programs";
 import { IL_META } from "@/data/states/IL/meta";
 import { IL_PROGRAMS } from "@/data/states/IL/programs";
+import { OH_META } from "@/data/states/OH/meta";
+import { OH_PROGRAMS } from "@/data/states/OH/programs";
+import { GA_META } from "@/data/states/GA/meta";
+import { GA_PROGRAMS } from "@/data/states/GA/programs";
+import { NC_META } from "@/data/states/NC/meta";
+import { NC_PROGRAMS } from "@/data/states/NC/programs";
+import { MI_META } from "@/data/states/MI/meta";
+import { MI_PROGRAMS } from "@/data/states/MI/programs";
 import { assertAddOnlyInvariant } from "@/lib/data-invariants";
 import type { Program, StateMeta } from "@/lib/types";
 
 // State registry, v3: ALL states are selectable, honestly tiered.
-//   deep    = hand-verified state pack + federal baseline (NJ, CA)
+//   deep    = hand-verified state pack + federal baseline (NJ, CA, TX, FL,
+//             NY, PA, IL, OH, GA, NC, MI)
 //   federal = federal baseline + a real aggregator pointer for the state
 //             programs we don't screen yet
 // The federal baseline (and the address-based local features — Census
@@ -51,6 +60,10 @@ export const STATES: StateEntry[] = [
   composeState(NY_META, NY_PROGRAMS),
   composeState(PA_META, PA_PROGRAMS),
   composeState(IL_META, IL_PROGRAMS),
+  composeState(OH_META, OH_PROGRAMS),
+  composeState(GA_META, GA_PROGRAMS),
+  composeState(NC_META, NC_PROGRAMS),
+  composeState(MI_META, MI_PROGRAMS),
   ...FEDERAL_TIER_STATES.map((m) => composeState(m, [])),
 ].sort((a, b) => a.name.localeCompare(b.name));
 
