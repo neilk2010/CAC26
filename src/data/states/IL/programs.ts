@@ -102,6 +102,7 @@ export const IL_PROGRAMS: Program[] = [
   },
   {
     id: "il-tanf",
+    equivalentKey: "state-tanf",
     name: "TANF Cash Assistance",
     shortName: "IL TANF",
     state: "IL",
@@ -201,6 +202,7 @@ export const IL_PROGRAMS: Program[] = [
   },
   {
     id: "il-ssi",
+    equivalentKey: "us-ssi",
     name: "Supplemental Security Income",
     shortName: "SSI",
     state: "IL",
@@ -229,6 +231,7 @@ export const IL_PROGRAMS: Program[] = [
   },
   {
     id: "il-eitc",
+    equivalentKey: "state-eitc",
     name: "Illinois Earned Income Tax Credit + Child Tax Credit",
     shortName: "IL EITC",
     state: "IL",
@@ -302,6 +305,7 @@ export const IL_PROGRAMS: Program[] = [
   },
   {
     id: "il-senior-freeze",
+    equivalentKey: "state-property-tax-relief",
     name: "Low-Income Senior Citizens Assessment Freeze",
     shortName: "IL Senior Freeze",
     state: "IL",
@@ -332,6 +336,7 @@ export const IL_PROGRAMS: Program[] = [
   },
   {
     id: "il-marketplace",
+    equivalentKey: "state-marketplace-subsidy",
     name: "Get Covered Illinois Marketplace Savings",
     shortName: "GCI Subsidy",
     state: "IL",

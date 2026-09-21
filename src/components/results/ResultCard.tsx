@@ -7,9 +7,11 @@ import { Card } from "@/components/ui/Card";
 import { Chevron, Disclosure, useDisclosureState } from "@/components/ui/Disclosure";
 import { Advisory } from "@/components/results/Advisory";
 import { ExplainButton } from "@/components/results/ExplainButton";
+import { UniqueBadge } from "@/components/results/UniqueBadge";
 import { CONFIDENCE_COLOR, CONFIDENCE_LABEL } from "@/components/results/confidence";
 import { useHousehold } from "@/lib/household-store";
 import { money } from "@/lib/format";
+import { isExclusiveTo } from "@/lib/uniqueness";
 import type { EligibilityResult } from "@/lib/types";
 
 // One program result. Collapsed = ONE line: name + est. $/yr + confidence
@@ -63,6 +65,9 @@ export function ResultCard({ result }: { result: EligibilityResult }) {
               {worth}
             </span>
           )}
+          {/* Derived from the program library, not the household — see
+              lib/uniqueness.ts. Renders nothing for the common case. */}
+          <UniqueBadge program={program} />
           {/* keyed on confidence so the badge pops whenever a match changes tier */}
           <Badge
             key={confidence}
@@ -78,6 +83,11 @@ export function ResultCard({ result }: { result: EligibilityResult }) {
         <div className="rc-body space-y-3">
           <p className="text-xs text-muted -mt-1">{program.agencyName}</p>
           <p className="text-sm">{program.summary}</p>
+          {/* Optional editorial note, shown only when the program really is
+              state-exclusive — the count-based badge works without it. */}
+          {program.whyUnique && isExclusiveTo(program, program.state) && (
+            <p className="text-sm italic text-foreground/70">{program.whyUnique}</p>
+          )}
           <ul className="text-sm text-muted list-disc list-inside space-y-1">
             {reasons.map((r, i) => (
               <li key={i}>{r}</li>

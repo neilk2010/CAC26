@@ -197,6 +197,31 @@ export interface Program {
    */
   supersedes?: string[];
   /**
+   * Marks programs that are the same KIND of benefit across states, so the
+   * uniqueness index (lib/uniqueness.ts) counts "how many states offer this"
+   * rather than "how many rows share an id" — ids are state-prefixed, so a raw
+   * id count would call every state program exclusive. Absent → falls back to
+   * `supersedes[0]`, then to `id`. Tag any program another state also runs
+   * (state EITCs, TANF, property-tax relief); leave it off for genuinely
+   * state-specific programs. A `us-` key means "exists nationwide" and is never
+   * badged. See tests/unit/uniqueness.test.ts for the guard.
+   */
+  equivalentKey?: string;
+  /**
+   * Optional one-line note on WHY this program is unusual, shown only when the
+   * program turns out to be state-exclusive. The count-based badge and panel
+   * work with this empty — never required.
+   */
+  whyUnique?: string;
+  /**
+   * Known to move: an indexed income limit, a sunsetting statute, paused
+   * enrolment, a figure we could only corroborate indirectly. Kept HERE, next
+   * to the number it warns about, rather than in a parallel Markdown list that
+   * would silently drift — `npm run audit:sources` derives the docs watch
+   * table from this field.
+   */
+  volatile?: string;
+  /**
    * Ceiling on the confidence we'll ever show. For programs where qualifying is decided
    * by a formula, rating, or lottery we can't model (Pell's SAI, VA disability ratings,
    * Section 8 waitlists, capped funds), "likely" would overpromise — cap at "possible".

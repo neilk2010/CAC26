@@ -72,6 +72,7 @@ export const FL_PROGRAMS: Program[] = [
   },
   {
     id: "fl-pregnancy-medicaid",
+    equivalentKey: "us-medicaid",
     name: "Medicaid for Pregnant Women",
     shortName: "FL Pregnancy Medicaid",
     state: "FL",
@@ -109,6 +110,7 @@ export const FL_PROGRAMS: Program[] = [
   },
   {
     id: "fl-parents-medicaid",
+    equivalentKey: "us-medicaid",
     name: "Medicaid for Parents & Caretakers",
     shortName: "FL Parent Medicaid",
     state: "FL",
@@ -149,6 +151,7 @@ export const FL_PROGRAMS: Program[] = [
   },
   {
     id: "fl-tca",
+    equivalentKey: "state-tanf",
     name: "Temporary Cash Assistance",
     shortName: "FL TCA",
     state: "FL",
@@ -259,6 +262,7 @@ export const FL_PROGRAMS: Program[] = [
   },
   {
     id: "fl-ssi",
+    equivalentKey: "us-ssi",
     name: "Supplemental Security Income",
     shortName: "SSI",
     state: "FL",
@@ -286,6 +290,7 @@ export const FL_PROGRAMS: Program[] = [
   },
   {
     id: "fl-senior-homestead",
+    equivalentKey: "state-property-tax-relief",
     name: "Limited-Income Senior Additional Homestead Exemption",
     shortName: "FL Senior Exemption",
     state: "FL",
@@ -318,6 +323,7 @@ export const FL_PROGRAMS: Program[] = [
   },
   {
     id: "fl-marketplace",
+    equivalentKey: "state-marketplace-subsidy",
     name: "Health Insurance Marketplace Savings",
     shortName: "Marketplace Subsidy",
     state: "FL",

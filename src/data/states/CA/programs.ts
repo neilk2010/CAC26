@@ -134,6 +134,7 @@ export const CA_PROGRAMS: Program[] = [
   },
   {
     id: "ca-calworks",
+    equivalentKey: "state-tanf",
     name: "California Work Opportunity and Responsibility to Kids",
     shortName: "CalWORKs",
     state: "CA",
@@ -198,6 +199,7 @@ export const CA_PROGRAMS: Program[] = [
   },
   {
     id: "ca-ssi-ssp",
+    equivalentKey: "us-ssi",
     name: "Supplemental Security Income / State Supplementary Payment",
     shortName: "SSI/SSP",
     state: "CA",
@@ -259,6 +261,7 @@ export const CA_PROGRAMS: Program[] = [
   },
   {
     id: "ca-lifeline",
+    equivalentKey: "state-lifeline",
     name: "California LifeLine",
     shortName: "CA LifeLine",
     state: "CA",
@@ -286,6 +289,7 @@ export const CA_PROGRAMS: Program[] = [
   },
   {
     id: "ca-eitc",
+    equivalentKey: "state-eitc",
     name: "California Earned Income Tax Credit + Young Child Tax Credit",
     shortName: "CalEITC",
     state: "CA",
@@ -321,6 +325,7 @@ export const CA_PROGRAMS: Program[] = [
   },
   {
     id: "ca-county-ga",
+    equivalentKey: "state-general-assistance",
     name: "County General Assistance",
     shortName: "General Assistance",
     state: "CA",
@@ -346,6 +351,7 @@ export const CA_PROGRAMS: Program[] = [
   },
   {
     id: "ca-ptp",
+    equivalentKey: "state-property-tax-relief",
     name: "Property Tax Postponement",
     shortName: "Property Tax Postponement",
     state: "CA",
@@ -375,6 +381,7 @@ export const CA_PROGRAMS: Program[] = [
   },
   {
     id: "ca-covered-ca",
+    equivalentKey: "state-marketplace-subsidy",
     name: "Covered California Premium Assistance",
     shortName: "Covered CA Subsidy",
     state: "CA",

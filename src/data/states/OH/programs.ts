@@ -112,6 +112,7 @@ export const OH_PROGRAMS: Program[] = [
   },
   {
     id: "oh-owf",
+    equivalentKey: "state-tanf",
     name: "Ohio Works First (Cash Assistance)",
     shortName: "OWF",
     state: "OH",
@@ -225,6 +226,7 @@ export const OH_PROGRAMS: Program[] = [
   },
   {
     id: "oh-eitc",
+    equivalentKey: "state-eitc",
     name: "Ohio Earned Income Tax Credit",
     shortName: "OH EITC",
     state: "OH",
@@ -268,6 +270,7 @@ export const OH_PROGRAMS: Program[] = [
   },
   {
     id: "oh-marketplace",
+    equivalentKey: "state-marketplace-subsidy",
     name: "Marketplace Premium Savings",
     shortName: "OH Marketplace",
     state: "OH",

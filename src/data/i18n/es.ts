@@ -122,6 +122,16 @@ export const es: Record<TranslationKey, string> = {
   "search.kind.scope": "sala",
   "search.kind.page": "página",
 
+  // Exclusivo de tu estado (derivado en lib/uniqueness.ts, nunca fijo)
+  "unique.badge": "Solo en {code}",
+  "unique.badgeRare": "{count} estados",
+  "unique.srExclusive": "Solo {state} ofrece esto entre los {covered} estados que OpenDoor cubre a fondo.",
+  "unique.srRare": "Se ofrece en solo {count} de los {covered} estados que OpenDoor cubre a fondo.",
+  "unique.panelLabel": "exclusivo de {state}",
+  "unique.panelTitle": "Exclusivo de {state}: programas que la mayoría de los estados no tienen",
+  "unique.panelIntro": "Ningún otro estado que OpenDoor cubre a fondo ofrece estos programas. Son fáciles de pasar por alto justamente porque las guías nacionales no los mencionan.",
+  "unique.panelFootnote": "Basado en los {covered} estados con paquetes de programas verificados a mano. A medida que se agreguen estados, esta lista se actualiza sola.",
+
   // Accessibility panel
   "a11y.openAria": "Opciones de accesibilidad",
   "a11y.title": "Accesibilidad",
