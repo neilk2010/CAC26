@@ -136,6 +136,7 @@ export const NY_PROGRAMS: Program[] = [
   },
   {
     id: "ny-family-assistance",
+    equivalentKey: "state-tanf",
     name: "Family Assistance (Temporary Assistance)",
     shortName: "NY Family Assistance",
     state: "NY",
@@ -266,6 +267,7 @@ export const NY_PROGRAMS: Program[] = [
   },
   {
     id: "ny-ssi-ssp",
+    equivalentKey: "us-ssi",
     name: "Supplemental Security Income + NY State Supplement",
     shortName: "SSI/SSP",
     state: "NY",
@@ -293,6 +295,7 @@ export const NY_PROGRAMS: Program[] = [
   },
   {
     id: "ny-eitc",
+    equivalentKey: "state-eitc",
     name: "New York State Earned Income Credit",
     shortName: "NY EITC",
     state: "NY",
@@ -334,6 +337,7 @@ export const NY_PROGRAMS: Program[] = [
   },
   {
     id: "ny-enhanced-star",
+    equivalentKey: "state-property-tax-relief",
     name: "Enhanced STAR (School Tax Relief for Seniors)",
     shortName: "Enhanced STAR",
     state: "NY",
@@ -364,6 +368,7 @@ export const NY_PROGRAMS: Program[] = [
   },
   {
     id: "ny-marketplace",
+    equivalentKey: "state-marketplace-subsidy",
     name: "NY State of Health Marketplace Savings",
     shortName: "NYSOH Subsidy",
     state: "NY",

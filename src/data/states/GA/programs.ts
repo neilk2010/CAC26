@@ -146,6 +146,7 @@ export const GA_PROGRAMS: Program[] = [
   },
   {
     id: "ga-tanf",
+    equivalentKey: "state-tanf",
     name: "TANF Cash Assistance",
     shortName: "GA TANF",
     state: "GA",
@@ -252,6 +253,7 @@ export const GA_PROGRAMS: Program[] = [
   },
   {
     id: "ga-access",
+    equivalentKey: "state-marketplace-subsidy",
     name: "Georgia Access Marketplace Savings",
     shortName: "GA Access",
     state: "GA",

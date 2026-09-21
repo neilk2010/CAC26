@@ -108,6 +108,7 @@ export const NC_PROGRAMS: Program[] = [
   },
   {
     id: "nc-work-first",
+    equivalentKey: "state-tanf",
     name: "Work First Family Assistance",
     shortName: "Work First",
     state: "NC",
@@ -180,6 +181,7 @@ export const NC_PROGRAMS: Program[] = [
   },
   {
     id: "nc-cip",
+    equivalentKey: "us-liheap",
     name: "Crisis Intervention Program",
     shortName: "NC CIP",
     state: "NC",
@@ -238,6 +240,7 @@ export const NC_PROGRAMS: Program[] = [
   },
   {
     id: "nc-marketplace",
+    equivalentKey: "state-marketplace-subsidy",
     name: "Marketplace Premium Savings",
     shortName: "NC Marketplace",
     state: "NC",

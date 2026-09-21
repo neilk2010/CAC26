@@ -102,6 +102,7 @@ export const PA_PROGRAMS: Program[] = [
   },
   {
     id: "pa-tanf",
+    equivalentKey: "state-tanf",
     name: "TANF Cash Assistance",
     shortName: "PA TANF",
     state: "PA",
@@ -225,6 +226,7 @@ export const PA_PROGRAMS: Program[] = [
   },
   {
     id: "pa-ssi-ssp",
+    equivalentKey: "us-ssi",
     name: "Supplemental Security Income + PA State Supplement",
     shortName: "SSI/SSP",
     state: "PA",
@@ -253,6 +255,7 @@ export const PA_PROGRAMS: Program[] = [
   },
   {
     id: "pa-ptrr",
+    equivalentKey: "state-property-tax-relief",
     name: "Property Tax/Rent Rebate",
     shortName: "PTRR",
     state: "PA",
@@ -281,6 +284,7 @@ export const PA_PROGRAMS: Program[] = [
   },
   {
     id: "pa-pace",
+    equivalentKey: "state-senior-pharma",
     name: "PACE / PACENET Prescription Assistance",
     shortName: "PACE/PACENET",
     state: "PA",
@@ -341,6 +345,7 @@ export const PA_PROGRAMS: Program[] = [
   },
   {
     id: "pa-pennie",
+    equivalentKey: "state-marketplace-subsidy",
     name: "Pennie Marketplace Savings",
     shortName: "Pennie Subsidy",
     state: "PA",

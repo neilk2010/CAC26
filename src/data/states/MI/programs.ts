@@ -107,6 +107,7 @@ export const MI_PROGRAMS: Program[] = [
   },
   {
     id: "mi-fip",
+    equivalentKey: "state-tanf",
     name: "Family Independence Program (Cash)",
     shortName: "MI FIP",
     state: "MI",
@@ -206,6 +207,7 @@ export const MI_PROGRAMS: Program[] = [
   },
   {
     id: "mi-eitc",
+    equivalentKey: "state-eitc",
     name: "Michigan Earned Income Tax Credit",
     shortName: "MI EITC",
     state: "MI",
@@ -247,6 +249,7 @@ export const MI_PROGRAMS: Program[] = [
   },
   {
     id: "mi-marketplace",
+    equivalentKey: "state-marketplace-subsidy",
     name: "Marketplace Premium Savings",
     shortName: "MI Marketplace",
     state: "MI",

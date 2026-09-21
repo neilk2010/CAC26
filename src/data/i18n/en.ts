@@ -119,6 +119,16 @@ export const en = {
   "search.kind.scope": "room",
   "search.kind.page": "page",
 
+  // Unique-to-your-state (derived in lib/uniqueness.ts — never hardcoded)
+  "unique.badge": "Only in {code}",
+  "unique.badgeRare": "{count} states",
+  "unique.srExclusive": "Only {state} offers this among the {covered} states OpenDoor covers in depth.",
+  "unique.srRare": "Offered in just {count} of the {covered} states OpenDoor covers in depth.",
+  "unique.panelLabel": "unique to {state}",
+  "unique.panelTitle": "Unique to {state} — programs most states don't have",
+  "unique.panelIntro": "No other state OpenDoor covers in depth runs these. They're easy to miss precisely because national guides don't mention them.",
+  "unique.panelFootnote": "Based on the {covered} states with hand-verified program packs. As more states are added, this list updates itself.",
+
   // Accessibility panel
   "a11y.openAria": "Accessibility options",
   "a11y.title": "Accessibility",

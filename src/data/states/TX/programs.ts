@@ -88,6 +88,7 @@ export const TX_PROGRAMS: Program[] = [
   },
   {
     id: "tx-pregnancy-medicaid",
+    equivalentKey: "us-medicaid",
     name: "Medicaid for Pregnant Women & CHIP Perinatal",
     shortName: "TX Pregnancy Coverage",
     state: "TX",
@@ -123,6 +124,7 @@ export const TX_PROGRAMS: Program[] = [
   },
   {
     id: "tx-parents-medicaid",
+    equivalentKey: "us-medicaid",
     name: "Medicaid for Parents & Caretakers",
     shortName: "TX Parent Medicaid",
     state: "TX",
@@ -164,6 +166,7 @@ export const TX_PROGRAMS: Program[] = [
   },
   {
     id: "tx-tanf",
+    equivalentKey: "state-tanf",
     name: "TANF Cash Help",
     shortName: "TX TANF",
     state: "TX",
@@ -264,6 +267,7 @@ export const TX_PROGRAMS: Program[] = [
   },
   {
     id: "tx-ssi",
+    equivalentKey: "us-ssi",
     name: "Supplemental Security Income",
     shortName: "SSI",
     state: "TX",
@@ -291,6 +295,7 @@ export const TX_PROGRAMS: Program[] = [
   },
   {
     id: "tx-homestead",
+    equivalentKey: "state-property-tax-relief",
     name: "Homestead Exemption for Seniors & People with Disabilities",
     shortName: "TX Homestead 65+",
     state: "TX",
@@ -319,6 +324,7 @@ export const TX_PROGRAMS: Program[] = [
   },
   {
     id: "tx-marketplace",
+    equivalentKey: "state-marketplace-subsidy",
     name: "Health Insurance Marketplace Savings",
     shortName: "Marketplace Subsidy",
     state: "TX",

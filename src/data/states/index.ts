@@ -1,33 +1,11 @@
 import { FEDERAL_PROGRAMS } from "@/data/federal/programs";
-import { FEDERAL_TIER_STATES } from "@/data/states/federal-tier";
-import { NJ_META } from "@/data/states/NJ/meta";
-import { NJ_PROGRAMS } from "@/data/states/NJ/programs";
-import { CA_META } from "@/data/states/CA/meta";
-import { CA_PROGRAMS } from "@/data/states/CA/programs";
-import { TX_META } from "@/data/states/TX/meta";
-import { TX_PROGRAMS } from "@/data/states/TX/programs";
-import { FL_META } from "@/data/states/FL/meta";
-import { FL_PROGRAMS } from "@/data/states/FL/programs";
-import { NY_META } from "@/data/states/NY/meta";
-import { NY_PROGRAMS } from "@/data/states/NY/programs";
-import { PA_META } from "@/data/states/PA/meta";
-import { PA_PROGRAMS } from "@/data/states/PA/programs";
-import { IL_META } from "@/data/states/IL/meta";
-import { IL_PROGRAMS } from "@/data/states/IL/programs";
-import { OH_META } from "@/data/states/OH/meta";
-import { OH_PROGRAMS } from "@/data/states/OH/programs";
-import { GA_META } from "@/data/states/GA/meta";
-import { GA_PROGRAMS } from "@/data/states/GA/programs";
-import { NC_META } from "@/data/states/NC/meta";
-import { NC_PROGRAMS } from "@/data/states/NC/programs";
-import { MI_META } from "@/data/states/MI/meta";
-import { MI_PROGRAMS } from "@/data/states/MI/programs";
+import { ALL_JURISDICTIONS } from "@/data/states/federal-tier";
+import { DEEP_PACKS } from "@/data/states/deep";
 import { assertAddOnlyInvariant } from "@/lib/data-invariants";
 import type { Program, StateMeta } from "@/lib/types";
 
 // State registry, v3: ALL states are selectable, honestly tiered.
-//   deep    = hand-verified state pack + federal baseline (NJ, CA, TX, FL,
-//             NY, PA, IL, OH, GA, NC, MI)
+//   deep    = hand-verified state pack + federal baseline (see states/deep.ts)
 //   federal = federal baseline + a real aggregator pointer for the state
 //             programs we don't screen yet
 // The federal baseline (and the address-based local features — Census
@@ -36,8 +14,8 @@ import type { Program, StateMeta } from "@/lib/types";
 //
 // Composition rule: a state program that `supersedes` federal ids replaces
 // those federal entries in that state — NJ SNAP stands in for us-snap, so a
-// NJ household never sees both. Adding a deep state = a data pack + a meta
-// entry; the engine and every template are untouched.
+// NJ household never sees both. Adding a deep state = a data pack + one line
+// in states/deep.ts; the engine and every template are untouched.
 export interface StateEntry extends StateMeta {
   programs: Program[];
 }
@@ -52,19 +30,14 @@ function composeState(meta: StateMeta, statePack: Program[]): StateEntry {
   };
 }
 
+// Deep packs win; every remaining jurisdiction composes from the federal
+// baseline alone. Filtering by code means a promoted state is never listed
+// twice — states/federal-tier.ts stays the complete 51 and is never edited.
+const DEEP_CODES = new Set(DEEP_PACKS.map((p) => p.meta.code));
+
 export const STATES: StateEntry[] = [
-  composeState(NJ_META, NJ_PROGRAMS),
-  composeState(CA_META, CA_PROGRAMS),
-  composeState(TX_META, TX_PROGRAMS),
-  composeState(FL_META, FL_PROGRAMS),
-  composeState(NY_META, NY_PROGRAMS),
-  composeState(PA_META, PA_PROGRAMS),
-  composeState(IL_META, IL_PROGRAMS),
-  composeState(OH_META, OH_PROGRAMS),
-  composeState(GA_META, GA_PROGRAMS),
-  composeState(NC_META, NC_PROGRAMS),
-  composeState(MI_META, MI_PROGRAMS),
-  ...FEDERAL_TIER_STATES.map((m) => composeState(m, [])),
+  ...DEEP_PACKS.map((p) => composeState(p.meta, p.programs)),
+  ...ALL_JURISDICTIONS.filter((m) => !DEEP_CODES.has(m.code)).map((m) => composeState(m, [])),
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 // Fail the build loudly if any pack violates the add-only guarantee for

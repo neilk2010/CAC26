@@ -131,6 +131,7 @@ export const NJ_PROGRAMS: Program[] = [
   },
   {
     id: "nj-wfnj",
+    equivalentKey: "state-tanf",
     name: "Work First New Jersey",
     shortName: "WFNJ / TANF",
     state: "NJ",
@@ -194,6 +195,7 @@ export const NJ_PROGRAMS: Program[] = [
   },
   {
     id: "nj-ssi",
+    equivalentKey: "us-ssi",
     name: "Supplemental Security Income",
     shortName: "SSI",
     state: "NJ",
@@ -220,6 +222,7 @@ export const NJ_PROGRAMS: Program[] = [
   },
   {
     id: "nj-paad",
+    equivalentKey: "state-senior-pharma",
     name: "Pharmaceutical Assistance to the Aged and Disabled",
     shortName: "PAAD",
     state: "NJ",
@@ -245,6 +248,7 @@ export const NJ_PROGRAMS: Program[] = [
   },
   {
     id: "nj-usf",
+    equivalentKey: "state-lifeline",
     name: "Universal Service Fund + NJ Lifeline",
     shortName: "USF / Lifeline",
     state: "NJ",
@@ -270,6 +274,7 @@ export const NJ_PROGRAMS: Program[] = [
   },
   {
     id: "nj-eitc",
+    equivalentKey: "state-eitc",
     name: "New Jersey Earned Income Tax Credit",
     shortName: "NJEITC",
     state: "NJ",
@@ -308,6 +313,7 @@ export const NJ_PROGRAMS: Program[] = [
   },
   {
     id: "nj-county-ga",
+    equivalentKey: "state-general-assistance",
     name: "County General Assistance",
     shortName: "General Assistance",
     state: "NJ",
@@ -332,6 +338,7 @@ export const NJ_PROGRAMS: Program[] = [
   },
   {
     id: "nj-senior-freeze",
+    equivalentKey: "state-property-tax-relief",
     name: "Senior Freeze (Property Tax Reimbursement)",
     shortName: "Senior Freeze",
     state: "NJ",
@@ -360,6 +367,7 @@ export const NJ_PROGRAMS: Program[] = [
   },
   {
     id: "nj-get-covered-nj",
+    equivalentKey: "state-marketplace-subsidy",
     name: "Get Covered NJ Premium Assistance",
     shortName: "Get Covered NJ",
     state: "NJ",

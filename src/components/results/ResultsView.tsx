@@ -13,6 +13,7 @@ import { ResultsControls } from "@/components/results/ResultsControls";
 import { CoverageNote } from "@/components/results/CoverageNote";
 import { NextSteps } from "@/components/results/NextSteps";
 import { BenefitStacking } from "@/components/results/BenefitStacking";
+import { UniquePanel } from "@/components/results/UniquePanel";
 import { ResultCard } from "@/components/results/ResultCard";
 import { ResultsDashboard } from "@/components/results/ResultsDashboard";
 import { CascadePanel } from "@/components/results/CascadePanel";
@@ -70,6 +71,12 @@ export function ResultsView() {
 
       <div className="rise-in" style={{ "--stagger": 2 } as CSSProperties}>
         <BenefitStacking results={results} flags={household.flags} />
+      </div>
+
+      {/* Renders nothing unless this state has a program no other covered
+          state offers — so federal-tier states are untouched. */}
+      <div className="rise-in" style={{ "--stagger": 2 } as CSSProperties}>
+        <UniquePanel results={results} state={household.state} />
       </div>
 
       {stateEntry && (
