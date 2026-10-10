@@ -88,6 +88,21 @@ function monthlyIncomeLimits(rules: ProgramRules, household: Household) {
   return { minMonthly, maxMonthly };
 }
 
+/**
+ * The monthly income line this household is measured against for one program.
+ * The engine already derives it to decide the outcome; exposing it lets the UI
+ * show someone where they actually sit instead of only a confidence word.
+ * Undefined when the program sets no ceiling, or household size is still
+ * unknown — every ceiling scales with it.
+ */
+export function monthlyIncomeCeiling(
+  program: Program,
+  household: Household
+): number | undefined {
+  if (household.householdSize === undefined) return undefined;
+  return monthlyIncomeLimits(program.rules, household).maxMonthly;
+}
+
 function testIncome(
   rules: ProgramRules,
   household: Household

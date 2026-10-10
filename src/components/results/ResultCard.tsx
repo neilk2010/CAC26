@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/Card";
 import { Chevron, Disclosure, useDisclosureState } from "@/components/ui/Disclosure";
 import { Advisory } from "@/components/results/Advisory";
 import { ExplainButton } from "@/components/results/ExplainButton";
+import { IncomeThreshold } from "@/components/results/IncomeThreshold";
 import { UniqueBadge } from "@/components/results/UniqueBadge";
 import { CONFIDENCE_COLOR, CONFIDENCE_LABEL } from "@/components/results/confidence";
 import { useHousehold } from "@/lib/household-store";
@@ -88,6 +89,9 @@ export function ResultCard({ result }: { result: EligibilityResult }) {
           {program.whyUnique && isExclusiveTo(program, program.state) && (
             <p className="text-sm italic text-foreground/70">{program.whyUnique}</p>
           )}
+          {/* The income line comes first: it's the question people open a card
+              to answer, and it's the one part they can check themselves. */}
+          <IncomeThreshold result={result} />
           <ul className="text-sm text-muted list-disc list-inside space-y-1">
             {reasons.map((r, i) => (
               <li key={i}>{r}</li>
