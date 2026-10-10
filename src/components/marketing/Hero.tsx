@@ -41,15 +41,13 @@ export function Hero() {
       <div className="relative max-w-6xl mx-auto px-6 pt-20 pb-24 grid lg:grid-cols-2 gap-14 items-center">
         <div>
           {/* Derived from the state registry — no hardcoded state claims. */}
-          <Badge className="label-mono text-[11px] text-accent border border-accent/30 px-3 py-1">
-            {totalProgramCount()} programs · every state · full coverage in {deepStates().length}{" "}
-            states
+          <Badge className="text-[13px] text-accent border border-accent/30 px-3 py-1">
+            {totalProgramCount()} programs across every state, {deepStates().length} covered in full
           </Badge>
           <h1 className="mt-6 text-5xl sm:text-6xl font-bold leading-[1.05] tracking-tight">
             {t("hero.headline1")}
             <br />
-            {t("hero.headline2")}{" "}
-            <span className="ink-gradient">{t("hero.headlineAccent")}</span>
+            {t("hero.headline2")} {t("hero.headlineAccent")}
           </h1>
           <p className="mt-6 text-lg text-muted max-w-md">{t("hero.sub")}</p>
 
@@ -69,7 +67,7 @@ export function Hero() {
             {TRUST_PILL_KEYS.map((k) => (
               <Badge
                 key={k}
-                className="label-mono text-[10px] text-muted border border-card-border px-3 py-1.5"
+                className="text-[13px] text-muted border border-card-border px-3 py-1.5"
               >
                 {t(k)}
               </Badge>
@@ -90,13 +88,13 @@ export function Hero() {
                   className="rounded-lg border border-card-border bg-background/60 p-3 flex items-center justify-between"
                 >
                   <span className="text-sm font-medium">{r.name}</span>
-                  <Badge color={r.color} bgAlpha="22" className="label-mono text-[9px] px-2 py-1">
+                  <Badge color={r.color} bgAlpha="22" className="text-[11px] px-2 py-1">
                     {r.conf}
                   </Badge>
                 </div>
               ))}
               <div className="rounded-lg bg-accent/10 border border-accent/30 p-3">
-                <p className="label-mono text-[9px] text-accent">{t("hero.mockValue")}</p>
+                <p className="text-[11px] text-accent">{t("hero.mockValue")}</p>
                 <p className="text-xl font-bold mt-1">$4,200 – $9,600 / yr</p>
               </div>
             </div>

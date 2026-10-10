@@ -53,7 +53,7 @@ export function UniquePanel({
           return (
             <li key={program.id} className="text-sm">
               <span className="font-medium">{program.name}</span>
-              {worth && <span className="label-mono text-[10px] text-muted"> · {worth}</span>}
+              {worth && <span className="text-xs text-muted"> {worth}</span>}
               {/* whyUnique is optional — the entry reads fine without it. */}
               {program.whyUnique && (
                 <span className="block text-muted">{program.whyUnique}</span>

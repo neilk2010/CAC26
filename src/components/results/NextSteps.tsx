@@ -57,14 +57,14 @@ export function NextSteps({
                     color: `color-mix(in srgb, ${scope.color} 62%, var(--foreground))`,
                   }}
                 >
-                  Open the {scope.label.toLowerCase()} questions{" "}
-                  <span className="offer-arrow">→</span>
+                  Open the {scope.label.toLowerCase()} questions
                   {unanswered > 0 && (
                     <span className="text-muted font-normal">
                       {" "}
-                      · {unanswered} short question{unanswered === 1 ? "" : "s"}
+                      ({unanswered} short question{unanswered === 1 ? "" : "s"})
                     </span>
-                  )}
+                  )}{" "}
+                  <span className="offer-arrow">→</span>
                 </p>
               </div>
             </div>

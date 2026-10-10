@@ -46,7 +46,7 @@ export function BenefitStacking({
 
   return (
     <InfoBox
-      label="how these stack"
+      label="How these stack"
       title={`Your ${likely.length} likely programs together ≈ ${moneyRange(totalMin, totalMax)}/yr`}
     >
       <ul className="text-sm space-y-1.5">
@@ -74,7 +74,7 @@ export function BenefitStacking({
 
       {interactions.length > 0 && (
         <div className="pt-1 space-y-1.5">
-          <p className="label-mono text-[9px] text-muted">programs that unlock each other</p>
+          <p className="text-xs text-muted">programs that unlock each other</p>
           {interactions.map(({ program, flagLabel }, i) => (
             <p key={`${program.id}-${i}`} className="text-sm">
               <span className="font-medium">{program.shortName}</span>
@@ -90,7 +90,7 @@ export function BenefitStacking({
       <p className="text-sm pt-1">
         Planning extra hours or a raise? Stacked benefits can drop at once —{" "}
         <Link href="/cliff-simulator" className="text-accent underline hover:no-underline">
-          see what a raise really nets you →
+          see what a raise really nets you
         </Link>
       </p>
     </InfoBox>

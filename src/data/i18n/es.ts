@@ -12,7 +12,7 @@ export const es: Record<TranslationKey, string> = {
   "nav.cliffSimulator": "Simulador de beneficios",
   "nav.search": "Buscar",
   "nav.searchAria": "Buscar programas y páginas",
-  "nav.localPrivate": "local y privado",
+  "nav.localPrivate": "Local y privado",
   "nav.signIn": "Iniciar sesión",
   "nav.myAccount": "Resultados guardados",
   "nav.startOver": "Empezar de nuevo",
@@ -25,7 +25,7 @@ export const es: Record<TranslationKey, string> = {
   "hero.sub":
     "Ayuda con comida, salud, energía y dinero en efectivo — explicada en lenguaje sencillo, con el enlace oficial para solicitar cada resultado. Sin cuenta obligatoria. Sin adivinar.",
   "hero.cta": "Ver si califico",
-  "hero.how": "Cómo funciona →",
+  "hero.how": "Cómo funciona",
   "hero.pill0": "Sin cuenta obligatoria",
   "hero.pill1": "No es un sitio del gobierno",
   "hero.pill2": "Gratis para siempre",
@@ -84,9 +84,9 @@ export const es: Record<TranslationKey, string> = {
   "results.esNote":
     "Los detalles de los programas y las razones vienen de fuentes oficiales y se muestran en inglés por ahora.",
   "results.editAnswers": "← Cambiar mis respuestas",
-  "results.tryCliff": "Probar el simulador de beneficios →",
-  "results.deadlines": "Mi calendario de fechas límite →",
-  "results.packet": "Mi paquete de beneficios para imprimir →",
+  "results.tryCliff": "Probar el simulador de beneficios",
+  "results.deadlines": "Mi calendario de fechas límite",
+  "results.packet": "Mi paquete de beneficios para imprimir",
   "results.clear": "Borrar mis respuestas",
 
   // Dashboard
@@ -98,7 +98,7 @@ export const es: Record<TranslationKey, string> = {
   "dash.noMoneyBody":
     "Nada aquí tiene un estimado en dólares todavía — los números a la derecha muestran lo que sigue abierto, y responder más preguntas puede abrir más.",
   "dash.of": "de",
-  "dash.likely": "probable",
+  "dash.likely": "Probable",
   "dash.stillOpen": "abiertos",
   "dash.screened": "revisados",
   "dash.ringAria": "{open} de {total} programas revisados siguen abiertos para ti",
@@ -116,7 +116,7 @@ export const es: Record<TranslationKey, string> = {
   "search.aria": "Buscar programas, salas y páginas",
   "search.tryThese": "prueba una de estas",
   "search.noMatch": "Nada coincidió — pero el cuestionario completo revisa todo lo que cubrimos.",
-  "search.startThere": "Empieza ahí →",
+  "search.startThere": "Empieza ahí",
   "search.footer": "↑↓ elegir · enter para abrir · la búsqueda no sale de este dispositivo",
   "search.kind.program": "programa",
   "search.kind.scope": "sala",

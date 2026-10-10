@@ -88,7 +88,7 @@ export function NavHeader() {
           </kbd>
         </button>
 
-        <div className="flex shrink-0 items-center gap-3 label-mono text-[10px] text-muted">
+        <div className="flex shrink-0 items-center gap-3 text-[12px] text-muted">
           {stateEntry && (
             <span className="hidden xl:inline whitespace-nowrap rounded-full border border-card-border px-2.5 py-1">
               {stateEntry.name}

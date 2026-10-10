@@ -7,6 +7,7 @@ import { Card } from "@/components/ui/Card";
 import { Chevron, Disclosure, useDisclosureState } from "@/components/ui/Disclosure";
 import { Advisory } from "@/components/results/Advisory";
 import { ExplainButton } from "@/components/results/ExplainButton";
+import { IncomeThreshold } from "@/components/results/IncomeThreshold";
 import { UniqueBadge } from "@/components/results/UniqueBadge";
 import { CONFIDENCE_COLOR, CONFIDENCE_LABEL } from "@/components/results/confidence";
 import { useHousehold } from "@/lib/household-store";
@@ -61,7 +62,7 @@ export function ResultCard({ result }: { result: EligibilityResult }) {
             {program.name}
           </span>
           {worth && (
-            <span className="label-mono hidden sm:inline text-[10px] text-muted shrink-0">
+            <span className="hidden sm:inline text-xs text-muted shrink-0">
               {worth}
             </span>
           )}
@@ -72,7 +73,7 @@ export function ResultCard({ result }: { result: EligibilityResult }) {
           <Badge
             key={confidence}
             color={color}
-            className="badge-pop label-mono shrink-0 px-3 py-1 text-[10px]"
+            className="badge-pop shrink-0 px-3 py-1 text-[11px]"
           >
             {CONFIDENCE_LABEL[confidence]}
           </Badge>
@@ -88,6 +89,9 @@ export function ResultCard({ result }: { result: EligibilityResult }) {
           {program.whyUnique && isExclusiveTo(program, program.state) && (
             <p className="text-sm italic text-foreground/70">{program.whyUnique}</p>
           )}
+          {/* The income line comes first: it's the question people open a card
+              to answer, and it's the one part they can check themselves. */}
+          <IncomeThreshold result={result} />
           <ul className="text-sm text-muted list-disc list-inside space-y-1">
             {reasons.map((r, i) => (
               <li key={i}>{r}</li>
@@ -98,7 +102,7 @@ export function ResultCard({ result }: { result: EligibilityResult }) {
           <ExplainButton program={program} />
           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 pt-1">
             <ButtonLink href={program.applyUrl} external className="inline-block text-sm px-4 py-2">
-              Verify &amp; apply with {program.agencyName} →
+              Verify and apply with {program.agencyName}
             </ButtonLink>
             <a
               href={program.sourceUrl}
@@ -106,7 +110,7 @@ export function ResultCard({ result }: { result: EligibilityResult }) {
               rel="noopener noreferrer"
               className="text-xs text-muted underline hover:text-foreground"
             >
-              Source · checked {program.lastVerified}
+              Source, checked {program.lastVerified}
             </a>
           </div>
         </div>

@@ -39,7 +39,7 @@ export function UniqueBadge({ program }: { program: Program }) {
 
   return (
     <span title={spoken} className="shrink-0">
-      <Badge color={UNIQUE_COLOR} className="label-mono px-2.5 py-1 text-[10px]">
+      <Badge color={UNIQUE_COLOR} className="px-2.5 py-1 text-xs">
         <span aria-hidden="true">★ {visible}</span>
         <span className="sr-only">{spoken}</span>
       </Badge>

@@ -55,7 +55,7 @@ function ProgressRing({
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <span className="text-xl font-bold leading-none tabular-nums">{open}</span>
-        <span className="label-mono text-[8px] text-muted mt-0.5">
+        <span className="text-[11px] text-muted mt-0.5">
           {ofLabel} {total}
         </span>
       </div>
@@ -85,7 +85,7 @@ export function ResultsDashboard({ results }: { results: EligibilityResult[] }) 
       <div className="relative flex flex-wrap items-center gap-x-8 gap-y-5">
         {hasMoney ? (
           <div className="min-w-0 flex-1">
-            <p className="label-mono text-[10px] text-accent">{t("dash.eyebrow")}</p>
+            <p className="text-[13px] text-accent">{t("dash.eyebrow")}</p>
             <p className="dash-number mt-1 text-5xl font-bold tracking-tight tabular-nums">
               {money(shown)}
               <span className="ml-1 text-lg font-semibold text-muted">{t("dash.perYear")}</span>
@@ -100,7 +100,7 @@ export function ResultsDashboard({ results }: { results: EligibilityResult[] }) 
           </div>
         ) : (
           <div className="min-w-0 flex-1">
-            <p className="label-mono text-[10px] text-accent">{t("dash.noMoneyEyebrow")}</p>
+            <p className="text-[13px] text-accent">{t("dash.noMoneyEyebrow")}</p>
             <p className="text-sm text-muted mt-2 max-w-md">{t("dash.noMoneyBody")}</p>
           </div>
         )}
@@ -114,15 +114,15 @@ export function ResultsDashboard({ results }: { results: EligibilityResult[] }) 
           />
           <dl className="space-y-1.5 text-sm">
             <div className="flex items-baseline gap-2">
-              <dt className="label-mono text-[9px] text-muted w-20">{t("dash.likely")}</dt>
+              <dt className="text-xs text-muted w-24">{t("dash.likely")}</dt>
               <dd className="font-semibold tabular-nums">{likely}</dd>
             </div>
             <div className="flex items-baseline gap-2">
-              <dt className="label-mono text-[9px] text-muted w-20">{t("dash.stillOpen")}</dt>
+              <dt className="text-xs text-muted w-24">{t("dash.stillOpen")}</dt>
               <dd className="font-semibold tabular-nums">{open}</dd>
             </div>
             <div className="flex items-baseline gap-2">
-              <dt className="label-mono text-[9px] text-muted w-20">{t("dash.screened")}</dt>
+              <dt className="text-xs text-muted w-24">{t("dash.screened")}</dt>
               <dd className="font-semibold tabular-nums">{results.length}</dd>
             </div>
           </dl>

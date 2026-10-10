@@ -21,7 +21,7 @@ export function ExplainButton({ program }: { program: Program }) {
   if (state === "done" && summary) {
     return (
       <div className="rounded-xl border border-card-border bg-card p-4 space-y-1">
-        <p className="label-mono text-[10px] text-muted">
+        <p className="text-xs text-muted">
           AI summary — verify with the official source
         </p>
         <p className="text-sm">{summary}</p>
@@ -80,7 +80,7 @@ export function ExplainButton({ program }: { program: Program }) {
         disabled={state === "loading"}
         className="press-weight rounded-full border border-card-border px-3.5 py-1.5 text-xs text-muted hover:text-foreground disabled:opacity-60"
       >
-        {state === "loading" ? "Writing…" : "Explain in plain words · AI"}
+        {state === "loading" ? "Writing…" : "Explain in plain words"}
       </button>
       <p className="text-[11px] text-muted/80">
         Uses AI: sends this program&apos;s public record and a summary of your answers (household

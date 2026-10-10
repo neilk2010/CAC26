@@ -109,7 +109,7 @@ export function StillPossibleMore({
             <div className="max-h-[56vh] overflow-y-auto px-4 py-3 space-y-4">
               {groups.map((g) => (
                 <div key={g.confidence}>
-                  <p className="label-mono text-[9px] flex items-center gap-1.5">
+                  <p className="text-xs flex items-center gap-1.5">
                     <span
                       className="w-1.5 h-1.5 rounded-full"
                       style={{ backgroundColor: CONFIDENCE_COLOR[g.confidence] }}
@@ -138,7 +138,7 @@ export function StillPossibleMore({
               ))}
             </div>
 
-            <p className="px-4 py-2 border-t border-card-border text-[10px] text-muted label-mono">
+            <p className="px-4 py-2 border-t border-card-border text-xs text-muted">
               this list narrows as you answer
             </p>
           </div>

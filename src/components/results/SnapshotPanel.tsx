@@ -136,7 +136,7 @@ export function SnapshotPanel({
         backgroundColor: changed ? "color-mix(in srgb, var(--accent) 6%, transparent)" : "color-mix(in srgb, var(--card) 60%, transparent)",
       }}
     >
-      <p className="label-mono text-[9px] text-accent">since your snapshot · {diff.savedAt}</p>
+      <p className="text-xs text-accent">since your snapshot, {diff.savedAt}</p>
       {changed ? (
         <div className="space-y-1.5 text-sm">
           {diff.nowLikely.length > 0 && (

@@ -33,7 +33,7 @@ export function CoverageNote({ stateEntry }: { stateEntry: StateEntry }) {
         rel="noopener noreferrer"
         className="inline-block text-sm text-accent underline hover:no-underline"
       >
-        Check {stateEntry.name}&apos;s programs on {stateEntry.aggregator.name} →
+        Check {stateEntry.name}&apos;s programs on {stateEntry.aggregator.name}
       </a>
     </InfoBox>
   );

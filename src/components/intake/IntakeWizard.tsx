@@ -93,7 +93,7 @@ export function IntakeWizard() {
       <div className="max-w-4xl mx-auto w-full px-6 py-14 grid lg:grid-cols-[1fr_280px] gap-10">
         <div className="space-y-8">
           <div className="flex items-center gap-3">
-            <span className="label-mono text-[10px] text-muted">
+            <span className="text-xs text-muted">
               {formatT(t("intake.step"), { n: safeStep + 1, total: steps.length })} ·{" "}
               {t(`intake.stepLabel.${currentStep}` as TranslationKey)}
             </span>
@@ -131,7 +131,7 @@ export function IntakeWizard() {
                   >
                     {s.name}
                     {s.tier === "deep" && (
-                      <span className="block text-[10px] text-accent label-mono">
+                      <span className="block text-xs text-accent">
                         {t("intake.fullCoverage")}
                       </span>
                     )}

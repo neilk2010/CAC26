@@ -61,17 +61,17 @@ export function Advisory({ result }: { result: EligibilityResult }) {
   return (
     <div className="rise-in rounded-lg bg-background/50 border border-card-border px-4 py-3 space-y-1.5">
       <p className="text-sm">
-        <span className="label-mono text-[9px] text-muted mr-2">next step</span>
+        <span className="text-xs text-muted mr-2">Next step</span>
         {nextStepLine(result)}
       </p>
       {worth ? (
         <p className="text-sm">
-          <span className="label-mono text-[9px] text-muted mr-2">worth</span>
+          <span className="text-xs text-muted mr-2">Worth</span>
           {worth}
         </p>
       ) : (
         <p className="text-sm text-muted">
-          <span className="label-mono text-[9px] mr-2">worth</span>
+          <span className="text-xs mr-2">Worth</span>
           This record doesn&apos;t carry a dollar estimate — verify with the official source.
         </p>
       )}

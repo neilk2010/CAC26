@@ -15,7 +15,7 @@ export function InfoBox({
   defaultOpen = false,
   children,
 }: {
-  /** label-mono eyebrow, e.g. "your local office". */
+  /** Small eyebrow above the title, e.g. "Your local office". */
   label: string;
   /** The one line that stays visible collapsed — make it carry the hook. */
   title: string;
@@ -47,7 +47,7 @@ export function InfoBox({
       >
         <span className="min-w-0 flex-1">
           <span
-            className="label-mono block text-[9px]"
+            className="block text-xs"
             style={{ color: `color-mix(in srgb, ${color} 62%, var(--foreground))` }}
           >
             {label}

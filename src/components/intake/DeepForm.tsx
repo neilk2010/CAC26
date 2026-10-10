@@ -35,7 +35,7 @@ function QuestionShell({
           <p className="text-sm font-medium">{prompt}</p>
           {question.optional && (
             <span
-              className="scope-ink label-mono shrink-0 text-[9px] rounded-full px-2 py-0.5"
+              className="scope-ink shrink-0 text-xs rounded-full px-2 py-0.5"
               style={{
                 border: "1px solid color-mix(in srgb, var(--scope-accent, var(--accent)) 35%, transparent)",
               }}
@@ -252,7 +252,7 @@ export function DeepForm({ questions }: { questions: ScreeningQuestion[] }) {
       )}
       {optional.length > 0 && (
         <div className="optional-block space-y-3">
-          <p className="label-mono text-[10px] scope-ink">
+          <p className="text-xs scope-ink">
             optional — answering can only unlock more options
           </p>
           {optional.map((q, i) => (

@@ -107,7 +107,7 @@ export function ScopeScreen({ scopeId }: { scopeId: string }) {
               </Icon>
             </span>
             <div>
-              <p className="label-mono text-[10px]" style={{ color: scope.color }}>
+              <p className="text-xs" style={{ color: scope.color }}>
                 {scope.kind === "category" ? "category deep dive" : "made for you"} ·{" "}
                 {scope.label.toLowerCase()}
               </p>
@@ -136,7 +136,7 @@ export function ScopeScreen({ scopeId }: { scopeId: string }) {
         {scope.localPointer && (
           <div className="rise-in" style={{ "--stagger": 2 } as CSSProperties}>
             <InfoBox
-              label="your local office"
+              label="Your local office"
               title={scope.localPointer.finderName}
               tint={scope.color}
             >
@@ -155,7 +155,7 @@ export function ScopeScreen({ scopeId }: { scopeId: string }) {
                 rel="noopener noreferrer"
                 className="scope-ink inline-block text-sm underline hover:no-underline"
               >
-                {scope.localPointer.finderName} →
+                {scope.localPointer.finderName}
               </a>
             </InfoBox>
           </div>
@@ -172,7 +172,7 @@ export function ScopeScreen({ scopeId }: { scopeId: string }) {
                 backgroundColor: `color-mix(in srgb, ${scope.color} 7%, transparent)`,
               }}
             >
-              <p className="label-mono text-[9px]" style={{ color: scope.color }}>
+              <p className="text-xs" style={{ color: scope.color }}>
                 step-by-step guide
               </p>
               <p className="text-sm font-medium mt-1">
@@ -188,7 +188,7 @@ export function ScopeScreen({ scopeId }: { scopeId: string }) {
         {SCHOLARSHIP_SCOPES.has(scope.id as string) && (
           <div className="rise-in" style={{ "--stagger": 2 } as CSSProperties}>
             <InfoBox
-              label="not income-gated"
+              label="Not income-gated"
               title={`Merit scholarships & contests — show full list (${SCHOLARSHIPS.length})`}
               tint={scope.color}
             >
@@ -196,7 +196,7 @@ export function ScopeScreen({ scopeId }: { scopeId: string }) {
                 Real awards judged on merit, essays, or competition — no income test. Every
                 name links to its official page.{" "}
                 <Link href="/scholarships" className="scope-ink underline hover:no-underline">
-                  There&apos;s a full page too →
+                  There&apos;s a full page too
                 </Link>
               </p>
               <ScholarshipList />

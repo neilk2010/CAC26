@@ -10,7 +10,7 @@ export function EligibilityMeter({ possible, total }: EligibilityMeterProps) {
   return (
     <div className="w-full max-w-md mx-auto">
       <div className="flex justify-between items-center mb-2">
-        <span className="label-mono text-[10px] text-accent">eligibility so far</span>
+        <span className="text-xs text-accent">Eligibility so far</span>
         <span className="text-sm text-muted">
           {/* keyed so the number pops whenever an answer changes it */}
           <span key={possible} className="badge-pop inline-block font-semibold text-foreground">

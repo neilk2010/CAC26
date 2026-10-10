@@ -43,7 +43,7 @@ export function ResultsView() {
       <main className="flex-1 flex flex-col items-center justify-center gap-4 px-6 py-16 text-center">
         <p className="text-muted">We need a few answers first.</p>
         <Link href="/intake" className="text-accent hover:underline">
-          Go to the questionnaire →
+          Go to the questionnaire
         </Link>
       </main>
     );
@@ -52,7 +52,6 @@ export function ResultsView() {
   return (
     <main className="flex-1 max-w-2xl mx-auto w-full px-6 py-12 space-y-8">
       <div className="rise-in space-y-2" style={{ "--stagger": 0 } as CSSProperties}>
-        <p className="label-mono text-[10px] text-accent">{t("results.eyebrow")}</p>
         <h1 className="text-3xl font-bold">{t("results.title")}</h1>
         <p className="text-sm text-muted">
           {formatT(t("results.intro"), {

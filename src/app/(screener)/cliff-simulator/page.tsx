@@ -78,7 +78,7 @@ export default function CliffSimulatorPage() {
           </p>
         </div>
 
-        <InfoBox label="explainer" title="What's a &ldquo;benefits cliff&rdquo;?">
+        <InfoBox label="Explainer" title="What's a &ldquo;benefits cliff&rdquo;?">
           <p className="text-sm text-muted leading-relaxed">
             Most assistance programs cut off once your income crosses a limit — sometimes all at
             once, not gradually. That means a modest raise or extra shift can push your income just

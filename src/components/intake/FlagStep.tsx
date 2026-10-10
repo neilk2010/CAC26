@@ -35,7 +35,7 @@ export function FlagStep({ questions, flags, onAnswer, onBack, onNext }: FlagSte
                 <div className="flex items-start gap-2">
                   <span className="text-sm">{q.question}</span>
                   {optionalInfo && (
-                    <span className="label-mono shrink-0 text-[9px] text-accent border border-accent/30 rounded-full px-2 py-0.5">
+                    <span className="shrink-0 text-xs text-accent border border-accent/30 rounded-full px-2 py-0.5">
                       {t("intake.optional")}
                     </span>
                   )}

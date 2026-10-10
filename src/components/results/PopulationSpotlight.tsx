@@ -27,8 +27,8 @@ export function PopulationSpotlight({
           .filter((r): r is EligibilityResult => !!r && r.confidence !== "unlikely");
         return (
           <Card key={p.id} className="p-5 space-y-2 border-l-[3px]" style={{ borderLeftColor: p.color }}>
-            <p className="label-mono text-[10px]" style={{ color: p.color }}>
-              spotlight · {p.label.toLowerCase()}
+            <p className="text-xs" style={{ color: p.color }}>
+              For {p.label.toLowerCase()}
             </p>
             <p className="text-sm font-medium">{p.tagline}</p>
             {highlighted.length > 0 ? (
@@ -39,7 +39,7 @@ export function PopulationSpotlight({
                     color={CONFIDENCE_COLOR[r.confidence]}
                     className="text-xs px-2.5 py-1"
                   >
-                    {r.program.shortName} · {CONFIDENCE_LABEL[r.confidence]}
+                    {r.program.shortName}, {CONFIDENCE_LABEL[r.confidence].toLowerCase()}
                   </Badge>
                 ))}
               </div>
@@ -54,7 +54,7 @@ export function PopulationSpotlight({
               className="inline-block text-sm hover:underline"
               style={{ color: p.color }}
             >
-              Go deeper: the {p.label.toLowerCase()} questions →
+              Go deeper: the {p.label.toLowerCase()} questions
             </Link>
           </Card>
         );
