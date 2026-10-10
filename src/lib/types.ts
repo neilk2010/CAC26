@@ -44,7 +44,11 @@ export type HousingTenure = "own" | "rent" | "other";
 export type FilingStatus = "single" | "joint" | "headOfHousehold";
 
 export interface Household {
-  state: string; // e.g. "CA"
+  /**
+   * e.g. "CA". Undefined until the visitor picks one — we never assume a
+   * state, because guessing wrong shows someone another state's programs.
+   */
+  state?: string;
   householdSize?: number;
   monthlyIncomeMin?: number; // lower bound of selected income range
   monthlyIncomeMax?: number; // upper bound of selected income range

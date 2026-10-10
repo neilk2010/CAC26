@@ -1,12 +1,12 @@
 "use client";
 
 import { createContext, useContext, useSyncExternalStore, type ReactNode } from "react";
-import { DEFAULT_STATE } from "@/data/states";
 import type { CategoricalFlag, Household } from "@/lib/types";
 
 const STORAGE_KEY = "opendoor-household";
 
-const EMPTY_HOUSEHOLD: Household = { state: DEFAULT_STATE, flags: {} };
+// No state: a first-time visitor is not in any state until they choose one.
+const EMPTY_HOUSEHOLD: Household = { flags: {} };
 
 interface HouseholdContextValue {
   household: Household;

@@ -103,7 +103,11 @@ export function IntakeWizard() {
             <p className="text-xs text-muted italic">{t("intake.esNote")}</p>
           )}
 
-          <EligibilityMeter possible={possible} total={programs.length} />
+          {/* The meter counts this state's programs, so there is nothing to
+              count until one is picked — "0 of 0" would just read as broken. */}
+          {programs.length > 0 && (
+            <EligibilityMeter possible={possible} total={programs.length} />
+          )}
 
           {/* keyed on the step id: each step rises in as its own scene */}
           <div key={currentStep} className="rise-in">

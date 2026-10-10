@@ -20,8 +20,6 @@ export interface StateEntry extends StateMeta {
   programs: Program[];
 }
 
-export const DEFAULT_STATE = "NJ";
-
 function composeState(meta: StateMeta, statePack: Program[]): StateEntry {
   const superseded = new Set(statePack.flatMap((p) => p.supersedes ?? []));
   return {
@@ -44,7 +42,9 @@ export const STATES: StateEntry[] = [
 // optional/sensitive questions (see lib/data-invariants.ts).
 assertAddOnlyInvariant(STATES.flatMap((s) => s.programs));
 
-export function getState(code: string): StateEntry | undefined {
+/** Takes an unset state too, so callers can ask before the visitor has picked one. */
+export function getState(code: string | undefined): StateEntry | undefined {
+  if (!code) return undefined;
   return STATES.find((s) => s.code === code);
 }
 

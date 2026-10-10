@@ -36,7 +36,9 @@ export function ResultsView() {
     items: results.filter((r) => r.confidence === c),
   })).filter((g) => g.items.length > 0);
 
-  if (!household.householdSize || household.monthlyIncomeMin === undefined) {
+  // No state picked yet means no programs to evaluate, so it belongs with the
+  // other "answer the questions first" cases rather than rendering an empty page.
+  if (!stateEntry || !household.householdSize || household.monthlyIncomeMin === undefined) {
     return (
       <main className="flex-1 flex flex-col items-center justify-center gap-4 px-6 py-16 text-center">
         <p className="text-muted">We need a few answers first.</p>
@@ -55,7 +57,7 @@ export function ResultsView() {
         <p className="text-sm text-muted">
           {formatT(t("results.intro"), {
             size: household.householdSize,
-            state: stateEntry?.name ?? household.state,
+            state: stateEntry.name,
           })}
         </p>
         {locale === "es" && <p className="text-xs text-muted italic">{t("results.esNote")}</p>}
@@ -66,7 +68,7 @@ export function ResultsView() {
       </div>
 
       <div className="rise-in" style={{ "--stagger": 2 } as CSSProperties}>
-        <SnapshotPanel results={results} state={household.state} />
+        <SnapshotPanel results={results} state={stateEntry.code} />
       </div>
 
       <div className="rise-in" style={{ "--stagger": 2 } as CSSProperties}>
@@ -76,7 +78,7 @@ export function ResultsView() {
       {/* Renders nothing unless this state has a program no other covered
           state offers — so federal-tier states are untouched. */}
       <div className="rise-in" style={{ "--stagger": 2 } as CSSProperties}>
-        <UniquePanel results={results} state={household.state} />
+        <UniquePanel results={results} state={stateEntry.code} />
       </div>
 
       {stateEntry && (

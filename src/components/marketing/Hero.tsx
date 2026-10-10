@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Badge } from "@/components/ui/Badge";
 import { BrowserFrame } from "@/components/ui/BrowserFrame";
 import { ButtonLink } from "@/components/ui/Button";
+import { FEDERAL_PROGRAMS } from "@/data/federal/programs";
 import { deepStates, getState, totalProgramCount } from "@/data/states";
 import { useHousehold } from "@/lib/household-store";
 import { useT } from "@/lib/i18n";
@@ -22,8 +23,9 @@ export function Hero() {
 
   // Illustrative preview shown in the hero mockup (not live data) — drawn
   // from the visitor's own state's program pack so no single state is
-  // hardcoded into the marketing copy.
-  const statePrograms = getState(household.state)?.programs ?? [];
+  // hardcoded into the marketing copy. Before they pick a state, the federal
+  // baseline stands in: those programs apply everywhere, so it stays honest.
+  const statePrograms = getState(household.state)?.programs ?? FEDERAL_PROGRAMS;
   const mockupRows = statePrograms.slice(0, 3).map((p, i) => ({
     name: p.shortName,
     conf: i < 2 ? t("hero.mockLikely") : t("hero.mockPossible"),
