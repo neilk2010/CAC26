@@ -75,6 +75,7 @@ export function ChatWidget() {
   const [draft, setDraft] = useState("");
   const [busy, setBusy] = useState(false);
   const [failed, setFailed] = useState(false);
+  const [busyLimit, setBusyLimit] = useState(false);
 
   const logRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -117,6 +118,7 @@ export function ChatWidget() {
     if (!q || busy) return;
     setDraft("");
     setFailed(false);
+    setBusyLimit(false);
     const history = turns.slice(-6);
     setTurns((prev) => [...prev, { role: "user", text: q }]);
     setBusy(true);
@@ -132,8 +134,9 @@ export function ChatWidget() {
           engineVerdict: verdict,
         }),
       });
-      const data = (await res.json()) as { answer?: string };
+      const data = (await res.json()) as { answer?: string; busy?: boolean };
       if (data.answer) setTurns((prev) => [...prev, { role: "model", text: data.answer! }]);
+      else if (data.busy) setBusyLimit(true);
       else setFailed(true);
     } catch {
       setFailed(true);
@@ -209,6 +212,7 @@ export function ChatWidget() {
             ))}
 
             {busy && <p className="text-sm text-muted">{t("chat.thinking")}</p>}
+            {busyLimit && <p className="text-sm text-muted">{t("chat.busy")}</p>}
             {failed && <p className="text-sm text-[#f87171]">{t("chat.error")}</p>}
           </div>
 

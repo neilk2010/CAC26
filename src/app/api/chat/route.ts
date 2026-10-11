@@ -134,11 +134,19 @@ export async function POST(request: Request) {
         model: process.env.GROQ_MODEL ?? "openai/gpt-oss-20b",
         messages,
         temperature: 0.2,
-        max_tokens: 300,
+        // gpt-oss reasons before answering and bills that thinking against
+        // max_tokens, so a budget sized for a 3-sentence reply returned an
+        // empty message. Keep the thinking short and leave room for both.
+        reasoning_effort: "low",
+        max_tokens: 800,
       }),
       signal: AbortSignal.timeout(20_000),
     });
 
+    // The free tier allows roughly four of these prompts a minute. Asking
+    // faster is a wait, not a breakage, and saying so stops someone retyping
+    // a question that was fine.
+    if (res.status === 429) return Response.json({ busy: true });
     if (!res.ok) return Response.json({ error: "unavailable" });
 
     const data = (await res.json()) as {

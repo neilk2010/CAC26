@@ -152,6 +152,7 @@ export const es: Record<TranslationKey, string> = {
   "footer.credit": "Creado por Neil Kumar y Rishanth Yavasani",
 
   // Chat guide
+  "chat.busy": "Muchas preguntas a la vez. Espera unos segundos y vuelve a preguntar.",
   "chat.launch": "Pregunta a la guía",
   "chat.title": "Guía de OpenDoor",
   "chat.subtitle": "Te orienta y explica las palabras. No puede aprobar nada.",
