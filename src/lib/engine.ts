@@ -103,6 +103,52 @@ export function monthlyIncomeCeiling(
   return monthlyIncomeLimits(program.rules, household).maxMonthly;
 }
 
+/**
+ * A door this household hasn't been measured against yet.
+ *
+ * 14 programs carry a second, much higher income limit that opens on a
+ * household flag — NJ FamilyCare runs 138% FPL, or 355% when someone is
+ * pregnant or there's a child under 5. The engine already swaps the ceiling
+ * (see `raised` in monthlyIncomeLimits), but a visitor who skipped that
+ * question is silently measured at the low limit and told "unlikely" against
+ * a line that may not be theirs.
+ *
+ * Returns the unanswered flag that would raise this program's ceiling the
+ * most, with the ceiling it would raise to. The limit is recomputed by asking
+ * monthlyIncomeLimits the same question with the flag set, so there is no
+ * second copy of the rule arithmetic to drift.
+ *
+ * Deliberately silent when the flag was answered "no" — they already told us,
+ * and re-asking reads as badgering about a pregnancy or a disability.
+ */
+export function raisedCeilingOpportunity(
+  program: Program,
+  household: Household
+): { flag: CategoricalFlag; ceiling: number } | undefined {
+  const { rules } = program;
+  const flags = rules.raisedIncomeLimitFlags;
+  if (flags === undefined || flags.length === 0) return undefined;
+  if (household.householdSize === undefined) return undefined;
+  // Already through the higher door: the ceiling in hand is the raised one.
+  if (flags.some((f) => household.flags[f] === true)) return undefined;
+
+  const current = monthlyIncomeLimits(rules, household).maxMonthly;
+  if (current === undefined) return undefined;
+
+  let best: { flag: CategoricalFlag; ceiling: number } | undefined;
+  for (const flag of flags) {
+    if (household.flags[flag] !== undefined) continue; // answered "no"
+    const withFlag: Household = {
+      ...household,
+      flags: { ...household.flags, [flag]: true },
+    };
+    const ceiling = monthlyIncomeLimits(rules, withFlag).maxMonthly;
+    if (ceiling === undefined || ceiling <= current) continue;
+    if (best === undefined || ceiling > best.ceiling) best = { flag, ceiling };
+  }
+  return best;
+}
+
 function testIncome(
   rules: ProgramRules,
   household: Household

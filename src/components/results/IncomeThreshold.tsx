@@ -1,6 +1,7 @@
 "use client";
 
 import { CONFIDENCE_COLOR } from "@/components/results/confidence";
+import { HigherDoor } from "@/components/results/HigherDoor";
 import { monthlyIncomeCeiling } from "@/lib/engine";
 import { money } from "@/lib/format";
 import { useHousehold } from "@/lib/household-store";
@@ -51,7 +52,12 @@ export function IncomeThreshold({ result }: { result: EligibilityResult }) {
     <div className="rounded-lg border border-card-border bg-background/40 px-3 py-2.5 space-y-2">
       <div className="flex items-baseline justify-between gap-3 text-xs">
         <span className="text-foreground/80">
-          You: {openEnded ? `${money(incomeMin)}+` : `${money(incomeMin)}–${money(incomeMax)}`}/mo
+          You: {openEnded
+            ? `${money(incomeMin)}+`
+            : incomeMin === incomeMax
+              ? money(incomeMin)
+              : `${money(incomeMin)}–${money(incomeMax)}`}
+          /mo
         </span>
         <span className="text-muted">
           Limit for {household.householdSize}: {money(Math.round(ceiling))}/mo
@@ -69,6 +75,11 @@ export function IncomeThreshold({ result }: { result: EligibilityResult }) {
         />
       </div>
       <p className="text-xs text-muted">{verdict}</p>
+      {/* A line they haven't been measured against yet — shown under the
+          verdict because it can overturn it. Only when the current line
+          actually binds: someone already under it gains nothing from a higher
+          one, and asking about a pregnancy to change nothing is pure noise. */}
+      {incomeMax > ceiling && <HigherDoor result={result} />}
     </div>
   );
 }

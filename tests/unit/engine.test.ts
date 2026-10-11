@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { evaluateProgram } from "@/lib/engine";
+import { evaluateProgram, raisedCeilingOpportunity } from "@/lib/engine";
 import { monthlyFPL } from "@/data/fpl";
 import type { Household, Program, ProgramRules } from "@/lib/types";
 
@@ -123,5 +123,68 @@ describe("kid-count tiers", () => {
 
   it("unanswered kid count is needsInfo, never fail", () => {
     expect(evaluateProgram(eitcLike, household(3000)).confidence).toBe("needsInfo");
+  });
+});
+
+describe("the higher door (raisedCeilingOpportunity)", () => {
+  // NJ FamilyCare's real shape: 138% FPL, or 355% when someone is pregnant
+  // or there's a child under 5.
+  const twoDoors = prog("two-doors", {
+    maxIncomePctFPL: 138,
+    raisedIncomeLimitFlags: ["pregnantOrChildUnder5"],
+    raisedMaxIncomePctFPL: 355,
+  });
+
+  it("offers the unanswered flag, with the ceiling it would raise to", () => {
+    const open = raisedCeilingOpportunity(twoDoors, household(2000));
+    expect(open?.flag).toBe("pregnantOrChildUnder5");
+    // The raised ceiling is recomputed by the engine, not hardcoded here.
+    expect(open?.ceiling).toBeCloseTo(monthlyFPL(2) * 3.55, 5);
+  });
+
+  it("stays silent once the flag is answered either way", () => {
+    // "Yes" — they are already measured against the raised ceiling.
+    expect(
+      raisedCeilingOpportunity(twoDoors, household(2000, { flags: { pregnantOrChildUnder5: true } }))
+    ).toBeUndefined();
+    // "No" — re-asking about a pregnancy would be badgering.
+    expect(
+      raisedCeilingOpportunity(twoDoors, household(2000, { flags: { pregnantOrChildUnder5: false } }))
+    ).toBeUndefined();
+  });
+
+  it("ignores programs with one door, or a flag that doesn't raise the line", () => {
+    expect(raisedCeilingOpportunity(prog("flat", { maxIncomePctFPL: 138 }), household(2000)))
+      .toBeUndefined();
+    // Flag listed but no raised figure: the ceiling never moves, so there is
+    // no door to offer.
+    const noRaise = prog("no-raise", {
+      maxIncomePctFPL: 138,
+      raisedIncomeLimitFlags: ["disabled"],
+    });
+    expect(raisedCeilingOpportunity(noRaise, household(2000))).toBeUndefined();
+  });
+
+  it("picks the flag that opens the line widest", () => {
+    const twoFlags = prog("two-flags", {
+      maxIncomeFlatDollar: 1000,
+      raisedIncomeLimitFlags: ["schoolAgeChild", "pregnantOrChildUnder5"],
+      raisedMaxIncomeFlatDollar: 5000,
+    });
+    // Both flags raise to the same figure here, so the first wins; what
+    // matters is that a choice is made and the raised ceiling is reported.
+    const open = raisedCeilingOpportunity(twoFlags, household(2000));
+    expect(open?.ceiling).toBe(5000);
+    // With one already declined, the other is still offered.
+    const declined = raisedCeilingOpportunity(
+      twoFlags,
+      household(2000, { flags: { schoolAgeChild: false } })
+    );
+    expect(declined?.flag).toBe("pregnantOrChildUnder5");
+  });
+
+  it("says nothing before household size is known, since every ceiling scales with it", () => {
+    const noSize: Household = { state: "US", flags: {} };
+    expect(raisedCeilingOpportunity(twoDoors, noSize)).toBeUndefined();
   });
 });
