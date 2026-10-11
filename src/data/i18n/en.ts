@@ -149,6 +149,7 @@ export const en = {
   "footer.credit": "Built by Neil Kumar and Rishanth Yavasani",
 
   // Chat guide
+  "chat.badge": "AI guide",
   "chat.busy": "A lot of questions at once \u2014 give it a few seconds and ask again.",
   "chat.launch": "Ask the guide",
   "chat.title": "OpenDoor guide",

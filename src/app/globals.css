@@ -766,3 +766,37 @@ html[data-font="dyslexia"] :is(p, li, span, h1, h2, h3, h4, h5, h6, a, button, l
   background: linear-gradient(90deg, var(--tier-color, var(--accent)) 0%, transparent 70%);
   border-radius: 2px;
 }
+
+/* ---------------------------------------------------------------------------
+   The guide's launcher. Same accent→violet sweep as the hero ink, so the
+   newest control on the page still reads as part of the site rather than a
+   widget dropped on top of it. Dark ink on the bright sweep, which clears
+   contrast on both ends of the gradient where white would not.
+--------------------------------------------------------------------------- */
+.chat-launch {
+  /* Light theme: the accent tokens are dark here, so the sweep is darkened a
+     further 15% and inked white — measured 4.9:1 at the teal end and 7.3:1 at
+     the violet end. Dark ink fell to 3.0:1 on the violet end and failed. */
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent) 85%, #000000),
+    color-mix(in srgb, color-mix(in srgb, var(--accent-2) 70%, var(--accent)) 85%, #000000)
+  );
+  color: #ffffff;
+}
+/* Dark theme: the same tokens are bright, so the sweep runs undarkened and
+   takes dark ink — 9.2:1 and 6.7:1. */
+.dark .chat-launch {
+  background: linear-gradient(
+    135deg,
+    var(--accent),
+    color-mix(in srgb, var(--accent-2) 70%, var(--accent))
+  );
+  color: #04201c;
+}
+.chat-launch-tip {
+  background: color-mix(in srgb, color-mix(in srgb, var(--accent-2) 70%, var(--accent)) 85%, #000000);
+}
+.dark .chat-launch-tip {
+  background: color-mix(in srgb, var(--accent-2) 70%, var(--accent));
+}
