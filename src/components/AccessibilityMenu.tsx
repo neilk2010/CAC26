@@ -91,7 +91,7 @@ export function AccessibilityMenu() {
   }, [open]);
 
   return (
-    <div ref={panelRef} className="fixed bottom-5 right-5 z-50 flex flex-col items-end">
+    <div ref={panelRef} className="fixed bottom-5 left-5 z-50 flex flex-col items-start">
       {open && (
         <div
           role="dialog"

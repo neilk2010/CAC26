@@ -150,4 +150,19 @@ export const es: Record<TranslationKey, string> = {
   "footer.disclaimer":
     "OpenDoor es solo informativo — no está afiliado a ninguna agencia del gobierno. Creado para el Congressional App Challenge 2026.",
   "footer.credit": "Creado por Neil Kumar y Rishanth Yavasani",
+
+  // Chat guide
+  "chat.launch": "Pregunta a la guía",
+  "chat.title": "Guía de OpenDoor",
+  "chat.subtitle": "Te orienta y explica las palabras. No puede aprobar nada.",
+  "chat.placeholder": "Pregunta por un programa o una página…",
+  "chat.send": "Enviar",
+  "chat.close": "Cerrar",
+  "chat.thinking": "Pensando…",
+  "chat.error": "La guía no está disponible ahora. El resto del sitio sigue funcionando.",
+  "chat.empty": "Pregúntame dónde está algo, qué significa una palabra o qué hace un programa.",
+  "chat.s1": "¿Qué significa “posiblemente elegible”?",
+  "chat.s2": "¿Dónde veo mis resultados?",
+  "chat.s3": "¿Qué es SNAP?",
+  "chat.disclaimer": "No es un sitio del gobierno. La agencia decide.",
 };

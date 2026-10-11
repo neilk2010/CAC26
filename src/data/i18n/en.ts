@@ -147,6 +147,21 @@ export const en = {
   "footer.disclaimer":
     "OpenDoor is informational only — not affiliated with any government agency. Built for the Congressional App Challenge 2026.",
   "footer.credit": "Built by Neil Kumar and Rishanth Yavasani",
+
+  // Chat guide
+  "chat.launch": "Ask the guide",
+  "chat.title": "OpenDoor guide",
+  "chat.subtitle": "Finds your way around and explains the words. It can't approve anything.",
+  "chat.placeholder": "Ask about a program or a page…",
+  "chat.send": "Send",
+  "chat.close": "Close",
+  "chat.thinking": "Thinking…",
+  "chat.error": "The guide is unavailable right now. Everything else on the site still works.",
+  "chat.empty": "Ask me where something is, what a word means, or what a program does.",
+  "chat.s1": "What does “possibly eligible” mean?",
+  "chat.s2": "Where do I see my results?",
+  "chat.s3": "What is SNAP?",
+  "chat.disclaimer": "Not a government site. The agency decides.",
 } as const;
 
 export type TranslationKey = keyof typeof en;

@@ -3,6 +3,7 @@ import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import { HouseholdProvider } from "@/lib/household-store";
 import { NavHeader } from "@/components/NavHeader";
 import { AccessibilityMenu } from "@/components/AccessibilityMenu";
+import { ChatWidget } from "@/components/chat/ChatWidget";
 import { ClerkThemeProvider } from "@/components/ClerkThemeProvider";
 import "./globals.css";
 
@@ -49,6 +50,7 @@ export default function RootLayout({
             <NavHeader />
             {children}
             <AccessibilityMenu />
+            <ChatWidget />
           </HouseholdProvider>
         </ClerkThemeProvider>
       </body>
