@@ -248,15 +248,16 @@ export function ChatWidget() {
         </div>
       )}
 
-      {/* A quiet hint so the circle is not a guessing game. Same chrome as the
-          site's other small pills, not a colour of its own. Decorative to a
-          screen reader, which gets the same words from the button's label. */}
+      {/* The hint wears the button's own colour so the two read as one
+          control, and sits big enough to be seen rather than discovered.
+          Decorative to a screen reader, which gets the same words from the
+          button's label. */}
       {!open && (
         <div className="flex flex-col items-end" aria-hidden>
-          <span className="rounded-full border border-card-border bg-card px-2.5 py-1 text-xs text-muted shadow-sm">
+          <span className="rounded-full bg-accent px-4 py-2 text-sm font-semibold text-[#04201c] shadow-lg">
             {t("chat.badge")}
           </span>
-          <span className="-mt-1 mr-[20px] h-2 w-2 rotate-45 border-b border-r border-card-border bg-card" />
+          <span className="-mt-1.5 mr-[20px] h-3 w-3 rotate-45 rounded-[2px] bg-accent" />
         </div>
       )}
 
