@@ -248,20 +248,15 @@ export function ChatWidget() {
         </div>
       )}
 
-      {/* The label names the button before it is pressed. Decorative to a
-          screen reader, which already gets the same words from aria-label. */}
+      {/* A quiet hint so the circle is not a guessing game. Same chrome as the
+          site's other small pills, not a colour of its own. Decorative to a
+          screen reader, which gets the same words from the button's label. */}
       {!open && (
         <div className="flex flex-col items-end" aria-hidden>
-          <span className="chat-launch flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-semibold shadow-lg">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
-              <rect x="4" y="7" width="16" height="12" rx="3" stroke="currentColor" strokeWidth="1.8" />
-              <path d="M12 7V4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-              <circle cx="9" cy="13" r="1.3" fill="currentColor" />
-              <circle cx="15" cy="13" r="1.3" fill="currentColor" />
-            </svg>
+          <span className="rounded-full border border-card-border bg-card px-2.5 py-1 text-xs text-muted shadow-sm">
             {t("chat.badge")}
           </span>
-          <span className="chat-launch-tip -mt-1 mr-[22px] h-3 w-3 rotate-45 rounded-[3px]" />
+          <span className="-mt-1 mr-[20px] h-2 w-2 rotate-45 border-b border-r border-card-border bg-card" />
         </div>
       )}
 
@@ -271,9 +266,9 @@ export function ChatWidget() {
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
         aria-label={t("chat.launch")}
-        className="chat-launch press-weight flex h-14 w-14 items-center justify-center rounded-full shadow-xl transition-transform hover:scale-105"
+        className="press-weight flex h-12 w-12 items-center justify-center rounded-full border border-accent/40 bg-accent text-[#04201c] shadow-lg transition-transform hover:scale-105"
       >
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" aria-hidden>
           <path
             d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3 20l1-4.6A8.5 8.5 0 1 1 21 11.5z"
             stroke="currentColor"
