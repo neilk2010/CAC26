@@ -71,11 +71,11 @@ function parseJsonish(raw: unknown, maxChars: number): unknown {
 /** Lets the widget stay hidden entirely when no key is configured, rather than
  *  offering a chat that answers every question with an error. */
 export function GET() {
-  return Response.json({ enabled: Boolean(process.env.GEMINI_API_KEY) });
+  return Response.json({ enabled: Boolean(process.env.GROQ_API_KEY) });
 }
 
 export async function POST(request: Request) {
-  if (!process.env.GEMINI_API_KEY) {
+  if (!process.env.GROQ_API_KEY) {
     return Response.json({ disabled: true });
   }
 
@@ -110,35 +110,41 @@ export async function POST(request: Request) {
     programs: retrievePrograms(question, programs),
   };
 
-  const contents = [
-    ...parseHistory(body.history).map((t) => ({ role: t.role, parts: [{ text: t.text }] })),
-    { role: "user" as const, parts: [{ text: `${JSON.stringify(grounding)}\n\nQuestion: ${question}` }] },
+  const messages = [
+    { role: "system", content: GUIDE_SYSTEM_PROMPT },
+    // "model" is this app's word for the guide's own turns; Groq's OpenAI-shaped
+    // API calls them "assistant".
+    ...parseHistory(body.history).map((t) => ({
+      role: t.role === "model" ? "assistant" : "user",
+      content: t.text,
+    })),
+    { role: "user", content: `${JSON.stringify(grounding)}\n\nQuestion: ${question}` },
   ];
 
   try {
-    const res = await fetch(
-      "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent",
-      {
-        method: "POST",
-        headers: {
-          "x-goog-api-key": process.env.GEMINI_API_KEY,
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          systemInstruction: { parts: [{ text: GUIDE_SYSTEM_PROMPT }] },
-          contents,
-          generationConfig: { temperature: 0.2, maxOutputTokens: 300 },
-        }),
-        signal: AbortSignal.timeout(20_000),
-      }
-    );
+    const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+      method: "POST",
+      headers: {
+        authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+        "content-type": "application/json",
+      },
+      body: JSON.stringify({
+        // Overridable: Groq retires model ids faster than this app changes, so a
+        // rename is an env edit rather than a deploy.
+        model: process.env.GROQ_MODEL ?? "openai/gpt-oss-20b",
+        messages,
+        temperature: 0.2,
+        max_tokens: 300,
+      }),
+      signal: AbortSignal.timeout(20_000),
+    });
 
     if (!res.ok) return Response.json({ error: "unavailable" });
 
     const data = (await res.json()) as {
-      candidates?: { content?: { parts?: { text?: string }[] } }[];
+      choices?: { message?: { content?: string } }[];
     };
-    const answer = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim();
+    const answer = data.choices?.[0]?.message?.content?.trim();
     if (!answer) return Response.json({ error: "unavailable" });
 
     return Response.json({ answer });
