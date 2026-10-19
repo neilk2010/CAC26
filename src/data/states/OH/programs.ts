@@ -171,6 +171,7 @@ export const OH_PROGRAMS: Program[] = [
   },
   {
     id: "oh-pipp",
+    equivalentKey: "state-utility-bill-credit",
     name: "PIPP Plus (Percentage of Income Payment Plan)",
     shortName: "PIPP Plus",
     state: "OH",

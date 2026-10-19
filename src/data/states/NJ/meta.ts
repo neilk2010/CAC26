@@ -7,7 +7,7 @@ export const NJ_META: StateMeta = {
   name: "New Jersey",
   available: true,
   tier: "deep",
-  // NJHelps is NJ DHS's own screening/application portal (already the
-  // applyUrl for several NJ programs — a verified, official destination).
-  aggregator: { name: "NJHelps", url: "https://njhelps.org/" },
+  // NJHelps is NJ DHS's own eligibility screener; the application itself is
+  // MyNJHelps (the applyUrl for NJ SNAP, WFNJ and General Assistance).
+  aggregator: { name: "NJHelps", url: "https://www.njhelps.gov/" },
 };
