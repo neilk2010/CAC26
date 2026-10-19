@@ -340,7 +340,6 @@ export const SEARCH_TAGS: SearchTag[] = [
     phrase: "lifeline phone",
     targets: [
       { kind: "program", id: "us-lifeline" },
-      { kind: "program", id: "nj-usf" },
       { kind: "program", id: "ca-lifeline" },
     ],
   },
@@ -497,11 +496,15 @@ export const SEARCH_TAGS: SearchTag[] = [
   },
   {
     phrase: "utility assistance",
-    targets: [{ kind: "scope", id: "energy" }, { kind: "program", id: "us-liheap" }],
+    targets: [
+      { kind: "scope", id: "energy" },
+      { kind: "program", id: "us-liheap" },
+      { kind: "program", id: "nj-usf" },
+    ],
   },
   // NOTE: no solar/clean-energy or rooftop-panel program exists anywhere in the
   // catalog (federal, NJ, or CA) — only heating/cooling bill help (LIHEAP) and
-  // utility discounts (Lifeline/USF). "solar" and "clean energy" resolve to the
+  // utility bill credits (NJ USF) and phone discounts (Lifeline). "solar" and "clean energy" resolve to the
   // energy category only, honestly, rather than a program that doesn't exist.
   {
     phrase: "solar",

@@ -14,7 +14,7 @@ export const NJ_PROGRAMS: Program[] = [
     category: "food",
     summary: "Monthly money on an EBT card to help buy groceries.",
     agencyName: "NJ Dept. of Human Services, Division of Family Development",
-    applyUrl: "https://njhelps.org/",
+    applyUrl: "https://www.mynjhelps.gov/",
     sourceUrl: "https://www.nj.gov/humanservices/dfd/programs/njsnap/",
     lastVerified: "2026-07-04",
     // Replaces the federal baseline entry in this state — see states/index.ts.
@@ -70,8 +70,8 @@ export const NJ_PROGRAMS: Program[] = [
     category: "energy",
     summary: "Help paying heating and cooling bills, run through New Jersey's energy assistance programs.",
     agencyName: "NJ Dept. of Community Affairs",
-    applyUrl: "https://www.nj.gov/dca/dhcr/programs/liheap/",
-    sourceUrl: "https://www.nj.gov/dca/dhcr/programs/liheap/",
+    applyUrl: "https://dcaid.dca.nj.gov/en-US/",
+    sourceUrl: "https://www.nj.gov/dca/dhcr/offices/hea.shtml",
     lastVerified: "2026-07-04",
     supersedes: ["us-liheap"],
     rules: {
@@ -138,12 +138,17 @@ export const NJ_PROGRAMS: Program[] = [
     category: "cash",
     summary: "Monthly cash aid for families with children who have very low or no income.",
     agencyName: "County Board of Social Services",
-    applyUrl: "https://njhelps.org/",
-    sourceUrl: "https://www.nj.gov/humanservices/dfd/programs/wfnj/",
+    applyUrl: "https://www.mynjhelps.gov/",
+    sourceUrl: "https://www.nj.gov/humanservices/wfnj/apply/",
+    // Not bumped: only the 3-person row ($839) was re-checked (DFD resource
+    // guide 9-25); the other rows still need checking against N.J.A.C. 10:90.
     lastVerified: "2026-07-04",
     rules: {
-      incomeBasis: "net",
+      // DFD's guide states the $839 (3 people) line as GROSS monthly income.
+      incomeBasis: "gross",
       incomePeriod: "monthly",
+      // Countable resources must be $2,000 or less (WFNJ "Get WFNJ" page).
+      assetLimitDollar: 2000,
       // WFNJ isn't tested against FPL at all — N.J.A.C. 10:90-3.3 sets a fixed,
       // rarely-updated "Schedule I" needs table by household size.
       maxIncomeSizeTable: {
@@ -171,21 +176,30 @@ export const NJ_PROGRAMS: Program[] = [
   },
   {
     id: "nj-school-meals",
-    name: "New Jersey Free School Meals for All",
+    name: "New Jersey Free School Meals",
     shortName: "School Meals",
     state: "NJ",
     category: "education",
-    summary: "Every NJ public school student eats breakfast and lunch free — no income test, no application, since the 2023–24 school year.",
-    agencyName: "NJ Dept. of Agriculture / Dept. of Education",
-    applyUrl: "https://www.nj.gov/agriculture/divisions/fn/childadult/njschoolmeals.html",
-    sourceUrl: "https://www.nj.gov/agriculture/divisions/fn/childadult/njschoolmeals.html",
-    lastVerified: "2025-02-01",
+    summary: "Free school breakfast and lunch for families earning up to 224% of the poverty level — well above the federal line. Apply through your school every year; some schools serve free meals to every student, but the application still counts.",
+    agencyName: "NJ Dept. of Agriculture",
+    applyUrl: "https://www.nj.gov/foodsecurity/our-work/initiatives/",
+    sourceUrl: "https://www.nj.gov/agriculture/divisions/fn/pdf/Form%20427%20Federal%20and%20State%20Income%20Eligibility%20Guidelines%20SY%202026-2027.pdf",
+    lastVerified: "2026-10-19",
     supersedes: ["us-nslp"],
     rules: {
       incomeBasis: "gross",
       incomePeriod: "monthly",
+      // NJ has NO statewide universal meals. Form 427 (SY 2026-27): federal free
+      // (130%) and reduced (185%) lines, plus NJ Expanded Income Eligibility
+      // (NJEIE) making meals free up to 224% FPL (4 people: $73,920/yr). Free
+      // meals for all students only at schools that opted into CEP, where NJEIE
+      // doesn't apply — so the income test is the honest screen here.
+      maxIncomePctFPL: 224,
       categoricalRequirements: [{ type: "schoolAgeChild" }],
       requireAllCategorical: true,
+      // Direct certification: SNAP/TANF households are certified free without
+      // an application (federal NSLP rule).
+      incomeWaivedByFlags: ["receivesSnap", "receivesTanf"],
     },
     estimatedAnnualValueMin: 800,
     estimatedAnnualValueMax: 1600,
@@ -229,9 +243,9 @@ export const NJ_PROGRAMS: Program[] = [
     category: "health",
     summary: "A New Jersey-only program that dramatically cuts the cost of prescription drugs for seniors and people with disabilities. One of the few states with a dedicated program like this.",
     agencyName: "NJ Dept. of Human Services, Division of Aging Services",
-    applyUrl: "https://www.nj.gov/humanservices/doas/services/paad/",
-    sourceUrl: "https://www.nj.gov/humanservices/doas/services/paad/",
-    lastVerified: "2026-07-04",
+    applyUrl: "https://nj-dhsas.my.site.com/njsave/quickstart",
+    sourceUrl: "https://www.nj.gov/humanservices/doas/services/l-p/paad/",
+    lastVerified: "2026-10-19",
     rules: {
       incomeBasis: "gross",
       incomePeriod: "annual",
@@ -248,26 +262,41 @@ export const NJ_PROGRAMS: Program[] = [
   },
   {
     id: "nj-usf",
-    equivalentKey: "state-lifeline",
-    name: "Universal Service Fund + NJ Lifeline",
-    shortName: "USF / Lifeline",
+    equivalentKey: "state-utility-bill-credit",
+    name: "Universal Service Fund (USF)",
+    shortName: "USF",
     state: "NJ",
-    category: "phone-internet",
-    summary: "Discounts on your phone bill and help with home energy costs for lower-income households.",
-    agencyName: "NJ Board of Public Utilities",
-    applyUrl: "https://www.nj.gov/dca/dhcr/programs/usf/",
-    sourceUrl: "https://www.nj.gov/dca/dhcr/programs/usf/",
+    category: "energy",
+    summary: "A monthly credit on your gas and electric bills — up to $200 a month — for lower-income households. The same application covers LIHEAP, so you can get both.",
+    agencyName: "NJ Dept. of Community Affairs (for the Board of Public Utilities)",
+    applyUrl: "https://dcaid.dca.nj.gov/en-US/",
+    sourceUrl: "https://www.nj.gov/dca/dhcr/offices/usf.shtml",
+    // Not bumped: the dollar table below is the FFY2026 fact sheet; the FY2027
+    // table on DCA's site hasn't been checked yet.
     lastVerified: "2026-07-04",
     rules: {
       incomeBasis: "gross",
       incomePeriod: "monthly",
-      maxIncomePctFPL: 175,
-      // USF credits apply to the household's own gas/electric account.
+      // Same 60% of State Median Income table as LIHEAP (DCA FFY2026 USF/LIHEAP
+      // fact sheet) — not a % of FPL. USF also requires an energy burden (>2% of
+      // income on gas/electric, >4% if heating with electric), not modeled.
+      maxIncomeSizeTable: {
+        1: 4167,
+        2: 5449,
+        3: 6732,
+        4: 8014,
+        5: 9296,
+        6: 10578,
+        7: 10819,
+        8: 11059,
+      },
+      sizeTableExtraPerPerson: 241,
+      // USF credits apply to a gas/electric account in a household member's name.
       categoricalRequirements: [{ type: "paysHomeEnergy" }],
       requireAllCategorical: true,
     },
-    estimatedAnnualValueMin: 120,
-    estimatedAnnualValueMax: 480,
+    estimatedAnnualValueMin: 240,
+    estimatedAnnualValueMax: 2400,
     estimatedTimeToBenefitWeeksMin: 1,
     estimatedTimeToBenefitWeeksMax: 3,
     cascadeHints: ["nj-liheap", "nj-snap"],
@@ -281,9 +310,9 @@ export const NJ_PROGRAMS: Program[] = [
     category: "tax",
     summary: "Extra cash back on your state tax return if you worked and had lower earnings, on top of the federal EITC.",
     agencyName: "NJ Division of Taxation",
-    applyUrl: "https://www.nj.gov/treasury/taxation/eitc/index.shtml",
-    sourceUrl: "https://www.nj.gov/treasury/taxation/eitc/index.shtml",
-    lastVerified: "2026-07-04",
+    applyUrl: "https://www.nj.gov/treasury/taxation/eitc/knoweitc.shtml",
+    sourceUrl: "https://www.nj.gov/treasury/taxation/eitc/knoweitc.shtml",
+    lastVerified: "2026-10-19",
     rules: {
       incomeBasis: "gross",
       incomePeriod: "annual",
@@ -314,19 +343,22 @@ export const NJ_PROGRAMS: Program[] = [
   {
     id: "nj-county-ga",
     equivalentKey: "state-general-assistance",
-    name: "County General Assistance",
+    name: "Work First NJ General Assistance",
     shortName: "General Assistance",
     state: "NJ",
     category: "cash",
-    summary: "A last-resort cash safety net run by your county welfare agency for adults with little to no income who don't qualify for other cash aid.",
-    agencyName: "County Board of Social Services",
-    applyUrl: "https://njhelps.org/",
-    sourceUrl: "https://www.nj.gov/humanservices/dfd/programs/ga/",
-    lastVerified: "2025-02-01",
+    summary: "Monthly cash aid for single adults and couples without children who have very little income — the Work First New Jersey program for households without kids. Apply through your County Social Service Agency.",
+    agencyName: "NJ Dept. of Human Services, via your County Social Service Agency",
+    applyUrl: "https://www.mynjhelps.gov/",
+    sourceUrl: "https://www.nj.gov/humanservices/wfnj/apply/",
+    lastVerified: "2026-10-19",
     rules: {
-      incomeBasis: "net",
+      incomeBasis: "gross",
       incomePeriod: "monthly",
-      maxIncomeFlatDollar: 600,
+      // DFD resource guide (9-25): "a single adult can have a gross monthly
+      // income of $278." Resource limit $2,000 (WFNJ "Get WFNJ" page).
+      maxIncomeFlatDollar: 278,
+      assetLimitDollar: 2000,
       categoricalRequirements: [],
       requireAllCategorical: false,
     },
@@ -374,9 +406,9 @@ export const NJ_PROGRAMS: Program[] = [
     category: "health",
     summary: "Lowers your monthly health insurance premium if you buy a plan through New Jersey's own marketplace and earn too much for NJ FamilyCare. New Jersey's own subsidy (NJHPS) extends help up to 600% of the poverty level, well past the federal cutoff.",
     agencyName: "Get Covered New Jersey",
-    applyUrl: "https://www.getcoverednj.gov/",
-    sourceUrl: "https://www.getcoverednj.gov/",
-    lastVerified: "2026-07-04",
+    applyUrl: "https://www.nj.gov/getcoverednj/",
+    sourceUrl: "https://www.nj.gov/getcoverednj/financialhelp/premiums/index.shtml",
+    lastVerified: "2026-10-19",
     rules: {
       incomeBasis: "gross",
       incomePeriod: "annual",
